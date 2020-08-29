@@ -1,5 +1,5 @@
 import os
-from conans import ConanFile, tools, AutoToolsBuildEnvironment
+from conans import ConanFile, tools, AutoToolsBuildEnvironment, CMake
 from conans.errors import ConanInvalidConfiguration
 
 
@@ -11,11 +11,13 @@ class LibEstConan(ConanFile):
     homepage = "https://github.com/cisco/libest"
     url = "https://github.com/conan-io/conan-center-index"
     settings = "os", "compiler", "build_type", "arch"
-    exports_sources = "patches/**"
+    exports_sources = "CMakeLists.txt", "patches/**"
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}
+    generators = "cmake"
 
     _autotools = None
+    _cmake = None
 
     @property
     def _source_subfolder(self):
@@ -30,9 +32,8 @@ class LibEstConan(ConanFile):
             del self.options.fPIC
 
     def configure(self):
-        if self.settings.os in ("Windows", "Macos"):
-            raise ConanInvalidConfiguration(
-                "Platform is currently not supported by this recipe")
+        if self.settings.os == "Macos":
+            raise ConanInvalidConfiguration("Platform is currently not supported by this recipe")
         if self.options.shared:
             del self.options.fPIC
         del self.settings.compiler.libcxx
@@ -49,8 +50,7 @@ class LibEstConan(ConanFile):
     def _configure_autotools(self):
         if not self._autotools:
             self._autotools = AutoToolsBuildEnvironment(self)
-            # TODO: 
-            # - Static only build: https://github.com/cisco/libest/blob/70824ddc09bee661329b9416082d88566efefb32/intro.txt#L140
+            # TODO:
             # - Release build: https://github.com/cisco/libest/blob/70824ddc09bee661329b9416082d88566efefb32/intro.txt#L253
             args = []
             if self.options.shared:
@@ -60,12 +60,23 @@ class LibEstConan(ConanFile):
             self._autotools.configure(args=args)
         return self._autotools
 
+    def _configure_cmake(self):
+        if not self._cmake:
+            self._cmake = CMake(self)
+            self._cmake.configure(build_folder=self._build_subfolder)
+
+        return self._cmake
+
     def build(self):
-        for patch in self.conan_data.get("patches", {}).get(self.version, []):
-            tools.patch(**patch)
-        with tools.chdir(self._source_subfolder):
-            autotools = self._configure_autotools()
-            autotools.make()
+        if self.settings.os == "Linux":
+            for patch in self.conan_data.get("patches", {}).get(self.version, []):
+                tools.patch(**patch)
+            with tools.chdir(self._source_subfolder):
+                autotools = self._configure_autotools()
+                autotools.make()
+        if self.settings.os == "Windows":
+            cmake = self._configure_cmake()
+            cmake.build()
 
     def package(self):
         self.copy("*LICENSE", src=self._source_subfolder, dst="licenses")
