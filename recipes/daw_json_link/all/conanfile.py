@@ -12,7 +12,8 @@ class DawJsonConan(ConanFile):
     license = "BSL-1.0"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared":[True,False], "fPIC":[True,False]}
-    default_options = {"shared": False, "implicit_conversions": True}
+    default_options = {"shared": False, "fPIC": True}
+    short_paths = True
 
     _cmake = None
 
@@ -65,7 +66,7 @@ class DawJsonConan(ConanFile):
         if not self._cmake:
             self._cmake = CMake(self)
             # self._cmake.definitions["JSON_BuildTests"] = False
-            self._cmake.configure(source_folder=self._source_subfolder)
+            self._cmake.configure(source_folder=self._source_subfolder, build_folder=self._build_subfolder)
         return self._cmake
 
     def build(self):
@@ -76,7 +77,11 @@ class DawJsonConan(ConanFile):
         self.copy("LICENSE", dst="licenses", src=self._source_subfolder)
         cmake = self._configure_cmake()
         cmake.install()
-        tools.rmdir(os.path.join(self.package_folder, "lib"))
+        tools.rmdir(os.path.join(self.package_folder, "share"))
 
     def package_info(self):
-        pass
+        self.cpp_info.filenames["cmake_find_package"] = "json_link"
+        self.cpp_info.filenames["cmake_find_package_multi"] = "json_link"
+        self.cpp_info.names["cmake_find_package"] = "daw"
+        self.cpp_info.names["cmake_find_package_multi"] = "daw"
+        self.cpp_info.components["json_link"].libs = tools.collect_libs(self)
