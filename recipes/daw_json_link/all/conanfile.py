@@ -70,8 +70,7 @@ class DawJsonConan(ConanFile):
         return self._cmake
 
     def build(self):
-        cmake = self._configure_cmake()
-        cmake.build()
+        pass
 
     def package(self):
         self.copy("LICENSE", dst="licenses", src=self._source_subfolder)
@@ -79,9 +78,12 @@ class DawJsonConan(ConanFile):
         cmake.install()
         tools.rmdir(os.path.join(self.package_folder, "share"))
 
+    def package_id(self):
+        self.info.header_only()
+
     def package_info(self):
         self.cpp_info.filenames["cmake_find_package"] = "json_link"
         self.cpp_info.filenames["cmake_find_package_multi"] = "json_link"
         self.cpp_info.names["cmake_find_package"] = "daw"
         self.cpp_info.names["cmake_find_package_multi"] = "daw"
-        self.cpp_info.components["json_link"].libs = tools.collect_libs(self)
+        self.cpp_info.components["json_link"]
