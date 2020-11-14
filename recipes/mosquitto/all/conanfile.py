@@ -2,6 +2,8 @@ import os
 import glob
 from conans import CMake, ConanFile, tools
 
+required_conan_version = ">=1.28.0"
+
 class MosquittoConan(ConanFile):
     name = "mosquitto"
     url = "https://github.com/conan-io/conan-center-index"
@@ -9,7 +11,7 @@ class MosquittoConan(ConanFile):
     topics = ("mqtt", "broker", "libwebsockets", "mosquitto", "eclipse-iot")
     license = "EPL-1.0"
     description = "Eclipse Mosquitto - An open source MQTT broker"
-    exports_sources = ["CMakeLists.txt", "patches/*"]
+    exports_sources = "CMakeLists.txt"
     generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False],
@@ -70,6 +72,12 @@ class MosquittoConan(ConanFile):
             tools.replace_in_file(os.path.join(self._source_subfolder, "src", "CMakeLists.txt"),
                                 "target_link_libraries(mosquitto_passwd ${OPENSSL_LIBRARIES})",
                                 "target_link_libraries(mosquitto_passwd ${OPENSSL_LIBRARIES} ws2_32 crypt32)")
+            tools.replace_in_file(os.path.join(self._source_subfolder, "lib", "CMakeLists.txt"),
+                                "install(TARGETS libmosquitto RUNTIME DESTINATION \"${CMAKE_INSTALL_BINDIR}\" LIBRARY DESTINATION \"${CMAKE_INSTALL_LIBDIR}\")",
+                                "install(TARGETS libmosquitto RUNTIME DESTINATION \"${CMAKE_INSTALL_BINDIR}\" LIBRARY DESTINATION \"${CMAKE_INSTALL_LIBDIR}\" ARCHIVE DESTINATION \"${CMAKE_INSTALL_LIBDIR}\")")
+            tools.replace_in_file(os.path.join(self._source_subfolder, "lib", "cpp", "CMakeLists.txt"),
+                                "install(TARGETS mosquittopp RUNTIME DESTINATION \"${CMAKE_INSTALL_BINDIR}\" LIBRARY DESTINATION \"${CMAKE_INSTALL_LIBDIR}\")",
+                                "install(TARGETS mosquittopp RUNTIME DESTINATION \"${CMAKE_INSTALL_BINDIR}\" LIBRARY DESTINATION \"${CMAKE_INSTALL_LIBDIR}\" ARCHIVE DESTINATION \"${CMAKE_INSTALL_LIBDIR}\")")
 
     def build(self):
         self._patch()
@@ -100,7 +108,7 @@ class MosquittoConan(ConanFile):
             self.cpp_info.components["libmosquitto"].requires.append("openssl::openssl")
             self.cpp_info.components["libmosquitto"].defines.append("WITH_TLS")
         if self.settings.os == "Windows":
-            self.cpp_info.components["libmosquitto"].system_libs.append("ws2_32")
+            self.cpp_info.components["libmosquitto"].system_libs.extend(["ws2_32", "crypt32"])
         elif self.settings.os == "Linux":
             self.cpp_info.components["libmosquitto"].system_libs.extend(["rt", "pthread", "dl"])
 
