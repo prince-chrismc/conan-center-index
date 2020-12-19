@@ -2,7 +2,7 @@ import os
 import glob
 from conans import CMake, ConanFile, tools
 
-required_conan_version = ">=1.28.0"
+required_conan_version = ">=1.29.1"
 
 class MosquittoConan(ConanFile):
     name = "mosquitto"
@@ -63,15 +63,16 @@ class MosquittoConan(ConanFile):
                                   "POSITION_INDEPENDENT_CODE 1",
                                   "POSITION_INDEPENDENT_CODE 0")
         if self.settings.os == "Windows":
-            tools.replace_in_file(os.path.join(self._source_subfolder, "lib", "CMakeLists.txt"),
-                                "set (LIBRARIES ${LIBRARIES} ws2_32)",
-                                "set (LIBRARIES ${LIBRARIES} ws2_32 crypt32)")
-            tools.replace_in_file(os.path.join(self._source_subfolder, "src", "CMakeLists.txt"),
-                                "set (MOSQ_LIBS ${MOSQ_LIBS} ws2_32)",
-                                "set (MOSQ_LIBS ${MOSQ_LIBS} ws2_32 crypt32)")
-            tools.replace_in_file(os.path.join(self._source_subfolder, "src", "CMakeLists.txt"),
-                                "target_link_libraries(mosquitto_passwd ${OPENSSL_LIBRARIES})",
-                                "target_link_libraries(mosquitto_passwd ${OPENSSL_LIBRARIES} ws2_32 crypt32)")
+            if self.options.with_tls:
+                tools.replace_in_file(os.path.join(self._source_subfolder, "lib", "CMakeLists.txt"),
+                                    "set (LIBRARIES ${LIBRARIES} ws2_32)",
+                                    "set (LIBRARIES ${LIBRARIES} ws2_32 crypt32)")
+                tools.replace_in_file(os.path.join(self._source_subfolder, "src", "CMakeLists.txt"),
+                                    "set (MOSQ_LIBS ${MOSQ_LIBS} ws2_32)",
+                                    "set (MOSQ_LIBS ${MOSQ_LIBS} ws2_32 crypt32)")
+                tools.replace_in_file(os.path.join(self._source_subfolder, "src", "CMakeLists.txt"),
+                                    "target_link_libraries(mosquitto_passwd ${OPENSSL_LIBRARIES})",
+                                    "target_link_libraries(mosquitto_passwd ${OPENSSL_LIBRARIES} ws2_32 crypt32)")
             tools.replace_in_file(os.path.join(self._source_subfolder, "lib", "CMakeLists.txt"),
                                 "install(TARGETS libmosquitto RUNTIME DESTINATION \"${CMAKE_INSTALL_BINDIR}\" LIBRARY DESTINATION \"${CMAKE_INSTALL_LIBDIR}\")",
                                 "install(TARGETS libmosquitto RUNTIME DESTINATION \"${CMAKE_INSTALL_BINDIR}\" LIBRARY DESTINATION \"${CMAKE_INSTALL_LIBDIR}\" ARCHIVE DESTINATION \"${CMAKE_INSTALL_LIBDIR}\")")
@@ -94,13 +95,12 @@ class MosquittoConan(ConanFile):
         tools.rmdir(os.path.join(self.package_folder, "lib", "pkgconfig"))
         tools.rmdir(os.path.join(self.package_folder, "etc"))
         if not self.options.shared:
-            for f in glob.glob(os.path.join(self.package_folder, "lib", "*.so*")):
-                os.remove(f)
-            for f in glob.glob(os.path.join(self.package_folder, "lib", "*.dll")):
-                os.remove(f)
+            tools.remove_files_by_mask(os.path.join(self.package_folder, "lib"), "*.so*")
+            tools.remove_files_by_mask(os.path.join(self.package_folder, "lib"), "*.dll*")
 
     def package_info(self):
         lib_suffix = "_static" if not self.options.shared else ""
+        # FIXME: there should be no namespace for CMake targets
         self.cpp_info.components["libmosquitto"].name = "mosquitto"
         self.cpp_info.components["libmosquitto"].libs = ["mosquitto" + lib_suffix]
         self.cpp_info.components["libmosquitto"].names["pkgconfig"] = "libmosquitto"
@@ -108,7 +108,9 @@ class MosquittoConan(ConanFile):
             self.cpp_info.components["libmosquitto"].requires.append("openssl::openssl")
             self.cpp_info.components["libmosquitto"].defines.append("WITH_TLS")
         if self.settings.os == "Windows":
-            self.cpp_info.components["libmosquitto"].system_libs.extend(["ws2_32", "crypt32"])
+            self.cpp_info.components["libmosquitto"].system_libs.append("ws2_32")
+            if self.options.with_tls:
+                self.cpp_info.components["libmosquitto"].system_libs.append("crypt32")
         elif self.settings.os == "Linux":
             self.cpp_info.components["libmosquitto"].system_libs.extend(["rt", "pthread", "dl"])
 
