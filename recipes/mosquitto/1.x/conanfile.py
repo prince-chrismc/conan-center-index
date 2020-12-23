@@ -16,10 +16,12 @@ class MosquittoConan(ConanFile):
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False],
                "fPIC": [True, False],
-               "with_tls": [True, False]}
+               "with_tls": [True, False],
+               "with_websockets": [True, False]}
     default_options = {"shared": False,
                        "fPIC": True,
-                       "with_tls": True}
+                       "with_tls": True,
+                       "with_websockets": False}
     _cmake = None
 
     @property
@@ -41,6 +43,8 @@ class MosquittoConan(ConanFile):
     def requirements(self):
         if self.options.with_tls:
             self.requires("openssl/1.1.1i")
+        if self.options.with_websockets:
+            self.requires("libwebsockets/4.1.6")
 
     def source(self):
         tools.get(**self.conan_data["sources"][self.version])
@@ -107,6 +111,9 @@ class MosquittoConan(ConanFile):
         if self.options.with_tls:
             self.cpp_info.components["libmosquitto"].requires.append("openssl::openssl")
             self.cpp_info.components["libmosquitto"].defines.append("WITH_TLS")
+        if self.options.with_websockets:
+            self.cpp_info.components["libmosquitto"].requires.append("libwebsockets::libwebsockets")
+            self.cpp_info.components["libmosquitto"].defines.append("WITH_WEBSOCKETS")
         if self.settings.os == "Windows":
             self.cpp_info.components["libmosquitto"].system_libs.append("ws2_32")
             if self.options.with_tls:
