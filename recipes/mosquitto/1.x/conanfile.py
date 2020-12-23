@@ -9,7 +9,7 @@ class MosquittoConan(ConanFile):
     url = "https://github.com/conan-io/conan-center-index"
     homepage = "https://github.com/eclipse/mosquitto"
     topics = ("mqtt", "broker", "libwebsockets", "mosquitto", "eclipse-iot")
-    license = "EPL-1.0", "EPL-2.0"
+    license = "EPL-1.0", "BSD-3-Clause" # https://lists.spdx.org/g/Spdx-legal/message/2701
     description = "Eclipse Mosquitto - An open source MQTT broker"
     exports_sources = "CMakeLists.txt"
     generators = "cmake"
@@ -88,7 +88,7 @@ class MosquittoConan(ConanFile):
     def package(self):
         self.copy(pattern="LICENSE.txt", dst="licenses", src=self._source_subfolder)
         self.copy(pattern="edl-v10", dst="licenses", src=self._source_subfolder)
-        self.copy(pattern="epl-v20", dst="licenses", src=self._source_subfolder)
+        self.copy(pattern="epl-v10", dst="licenses", src=self._source_subfolder)
         self.copy(pattern="mosquitto.conf", src=self._source_subfolder, dst="res")
         cmake = self._configure_cmake()
         cmake.install()
