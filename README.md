@@ -3,7 +3,7 @@
 This is the source index of recipes of the [ConanCenter](https://conan.io/center) package repository.
 
 This repository includes a Continuous Integration system that will build automatically the Conan packages for the recipes submitted via
-[Pull Request](https://github.com/conan-io/conan-center-index/pulls).
+[Pull Request](https://github.com/conan-io/conan-center-index/pulls). 
 
 
 ### Documentation
