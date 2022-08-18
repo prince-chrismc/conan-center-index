@@ -7,13 +7,39 @@ needed. Packages from Conan Center should fulfill the expectations of anyone
 reading the changelog of the library, the documentation, or any statement by
 the library maintainers.
 
-
 <!-- toc -->
 ## Contents
 
   * [Rules](#rules)
   * [Exceptions](#exceptions)
   * [Patches: format and conventions](#patches-format-and-conventions)<!-- endToc -->
+
+## Exporting Patches
+
+It's ideal to minimize the number of files in a package the exactly whats required. When recipes support multiple versions with differing patches it's strongly encourged to only export the patches that are being used for that given recipe.
+
+Make sure the `export_sources` attribute is replaced by the following:
+
+```py
+def export_sources(self):
+    self.copy("CMakeLists.txt")
+    for patch in self.conan_data.get("patches", {}).get(self.version, []):
+        self.copy(patch["patch_file"])
+```
+
+## Applying Patches
+
+Patches can be applied in a different protected method, the pattern name is `_patch_sources`. When applying patch files, `tools.patch` is the best option.
+For simple cases, `tools.replace_in_file` is allowed.
+
+```py
+def _patch_sources(self):
+    for patch in self.conan_data.get("patches", {}).get(self.version, []):
+        tools.patch(**patch)
+    # remove bundled xxhash
+    tools.remove_files_by_mask(os.path.join(self._source_subfolder, "lib"), "whateer.*")
+    tools.replace_in_file(os.path.join(self._cmakelists_subfolder, "CMakeLists.txt"), "...", "")
+```
 
 ## Rules
 
@@ -51,8 +77,8 @@ to packages generated in Conan Center.
 **Official release patches.-** If the library documents that a patch should be
 applied to sources when building a tag/release from sources, ConanCenter WILL
 apply that patch too. This is needed to match the documented behavior or the
-binaries of that library offered by other means. [Example here](https://www.boost.org/users/history/version_1_73_0.html).
-
+binaries of that library offered by other means.
+[Example here](https://www.boost.org/users/history/version_1_73_0.html).
 
 ## Exceptions
 

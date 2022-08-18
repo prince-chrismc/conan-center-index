@@ -202,19 +202,6 @@ def validate(self):
 
 As a result, all calls to `tools.check_min_cppstd` must be guarded by a check for the setting and the only way to ensure the C++ standard is to check the compiler's version to know if it offers sufficient support. An example of this can be found [here](https://github.com/conan-io/conan/issues/8002).
 
-## What is the policy for adding older versions of a package?
-
-We defer adding older versions without a direct requirement. We love to hear why in the opening description of the PR.
-Adding versions that are not used by consumer only requires more resources and time from the CI servers.
-
-## What is the policy for removing older versions of a package?
-
-Older versions can be removed from packages given the considerations below. When removing those version, remove everything
-that is specific to them: logic from the recipe and references in `config.yml` and `conandata.yml`. In any case, packages
-are never removed from ConanCenter remote.
-
-When removing older versions, please take into account [these considerations](reviewing.md#supported-versions).
-
 ## Can I install packages from the system package manager?
 
 It depends. You can not mix both regular projects with system packages, but you can provide package wrappers for system packages. However, Conan can not track system packages, like their version and options, which creates a fragile situation where affects libraries and binaries built in your package but can not be totally reproduced.

@@ -26,6 +26,32 @@ changes and improvements, you can read about them in the
 This document is a practical guide, offering extended information particular to Conan
 Center Index recipes to get them ready to upgrade to Conan 2.0.
 
+## Recipe Structure
+
+Some notes:
+
+- old test_package is moved to v1
+- keep one .cpp
+
+```
+.
++-- recipes
+|   +-- library_name/
+|       +-- config.yml
+|       +-- all/
+|           +-- conanfile.py
+|           +-- conandata.yml
+|           +-- patches/
+|               +-- add-missing-string-header.patch
+|           +-- test_package/
+|               +-- conanfile.py
+|               +-- CMakeLists.txt
+|               +-- test_package.cpp
+|           +-- test_v1_package/
+|               +-- conanfile.py
+|               +-- CMakeLists.txt
+```
+
 ## New cpp_info set_property model
 
 New Conan generators like
