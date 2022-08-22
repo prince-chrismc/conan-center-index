@@ -4,26 +4,7 @@ First thing is know what library you want to add. Conan packages are always lowe
 Take note of the license and URL for the project, to fill in the `conanfile.py` attributes later.
 
 <!-- toc -->
-## Contents
-
-  * [Recipe files structure](#recipe-files-structure)
-    * [`config.yml`](#configyml)
-    * [`conandata.yml`](#conandatayml)
-    * [The _recipe folder_: `conanfile.py`](#the-_recipe-folder_-conanfilepy)
-    * [The test package folders: `test_package` and `test_<something>`](#the-test-package-folders-test_package-and-test_something)
-  * [How to provide a good recipe](#how-to-provide-a-good-recipe)
-    * [Header Only](#header-only)
-    * [CMake](#cmake)
-      * [Components](#components)
-    * [Autotools](#autotools)
-      * [Components](#components-1)
-    * [No Upstream Build Scripts](#no-upstream-build-scripts)
-    * [System Packages](#system-packages)
-    * [Verifying Dependency Version](#verifying-dependency-version)
-    * [Verifying Dependency Options](#verifying-dependency-options)
-  * [Test the recipe locally](#test-the-recipe-locally)
-    * [Updating conan hooks on your machine](#updating-conan-hooks-on-your-machine)
-  * [Debugging failed builds](#debugging-failed-builds)<!-- endToc -->
+## Contents<!-- endToc -->
 
 ## Recipe files structure
 
@@ -76,7 +57,7 @@ We always welcome latest releases as soon as they are available, and from time t
 the more versions we have, the more resources that are needed in the CI and the more time it takes to build each pull-request (also, the
 more chances of failing because of unexpected errors).
 
-### Removing old versions
+#### Removing old versions
 
 When removing old versions, please follow these considerations:
  - keep one version for every major release
@@ -90,7 +71,7 @@ recover them in the future, Git contains the full history and changes can be rec
 Please, note that even if those versions are removed from this repository, **the packages will always be accessible in ConanCenter remote**
 associated to the recipe revision used to build them.
 
-### Adding old versions
+#### Adding old versions
 
 We love to hear why in the opening description of the PR.
 We usually don't add old versions unless there is a specific request for it.
@@ -126,12 +107,8 @@ def build(self):
 
 #### Sources
 
-**Origin of sources:**
-
-* Library sources should come from an official origin like the library source code repository or the official
-release/download webpage.
-
-* If an official source archive is available, it should be preferred over an auto-generated archive.
+**Origin of sources:** Library sources should come from an official origin like the library source code repository or the official
+release/download webpage. If an official source archive is available, it should be preferred over an auto-generated archive.
 
 **Source immutability:** Downloaded source code stored under `source` folder should not be modified. Any patch should be applied to the copy of this source code when a build is executed (basically in `build()` method).
 
@@ -139,7 +116,8 @@ release/download webpage.
 
 **Sources not accessible:**
 
-* Library sources that are not publicly available will not be allowed in this repository even if the license allows their redistribution.
+* Library sources that are not publicly available will not be allowed in this repository even if the license allows their redistribution. See
+  our [closed source FAQ answer for more](../faqs.md#how-to-package-libraries-that-depend-on-proprietary-closed-source-libraries).
 
 * If library sources cannot be downloaded from their official origin or cannot be consumed directly due to their
   format, the recommendation is to contact the publisher and ask them to provide the sources in a way/format that can be consumed
@@ -200,12 +178,12 @@ for each combination. There are some particular cases for this general rule:
    > available in the Conan cache at the same time. This enable consumers to switch from one configuration to the other in the case
    > they want to run or to debug those executables.
 
-## Options
+#### Options
 
 Recipes can list any number of options with any meaning, and defaults are up to the recipe itself. The CI cannot enforce anything
 in this direction.
 
-### Recommended feature options names
+##### Recommended feature options names
 
 It's often needed to add options to toggle specific library features on/off. Regardless of the default, there is a strong preference for using positive naming for options. In order to avoid the fragmentation, we recommend to use the following naming conventions for such options:
 
@@ -232,7 +210,7 @@ the actual recipe code then may look like:
 
 having the same naming conventions for the options may help consumers, e.g. they will be able to specify options with wildcards: `-o *:with_threads=True`, therefore, `with_threads` options will be enabled for all packages in the graph that support it.
 
-### Known Options
+##### Known Options
 
 However, there are a couple of options that have a special meaning for the CI:
 
@@ -270,7 +248,7 @@ However, there are a couple of options that have a special meaning for the CI:
 
    The `skip_test` configuration is supported by [CMake](https://docs.conan.io/en/latest/reference/build_helpers/cmake.html#test) and [Meson](https://docs.conan.io/en/latest/reference/build_helpers/meson.html#test).
 
-### Dependencies
+#### Dependencies
 
 When a package needs other packages those are can be include with the `requirements()` methods.
 
@@ -285,21 +263,21 @@ There are rules to follow:
 * Specify explicit RREV (recipe revision) of dependencies is not allowed.
 * Only other conan-center recipes are allowed in `requires`/`requirements()` and `build_requires`/`build_requirements()` of a conan-center recipe.
 
-#### Optional Requirements
+##### Optional Requirements
 
 If a requirement is conditional, this condition must not depend on build context. Build requirements don't have this constraint.
 Add an option, see [naming recommendation](#recommended-feature-options-names), and set the default to make the upstream build system.
 
-#### Requirements Options
+##### Requirements Options
 
 Forcing options of dependencies inside a conan-center recipe should be avoided, except if it is mandatory for the library.
 You need to use the `validate()` method in order to ensure they check after the Conan graph is completely built.
 
-#### Handling "internal" dependencies
+##### Handling "internal" dependencies
 
 Vendoring in library source code should be removed (best effort) to avoid potential ODR violations. If upstream takes care to rename symbols, it may be acceptable.
 
-### The test package folders: `test_package`
+#### The test package folders: `test_package`
 
 All the packages in this repository need to be tested before they join ConanCenter. A `test_package` folder with its corresponding `conanfile.py` and
 a minimal project to test the package is strictly required. You can read about it in the
@@ -451,43 +429,3 @@ An example of this can be found in the [kealib recipe](https://github.com/conan-
         if not self.options["liba"].enable_feature:
             raise ConanInvalidConfiguration(f"The project {self.name}/{self.version} requires liba.enable_feature=True.")
 ```
-
-## Test the recipe locally
-
-The system will use the [conan-center hook](https://github.com/conan-io/hooks) to perform some quality checks. You can install the hook running:
-
-```sh
-conan config install https://github.com/conan-io/hooks.git -sf hooks -tf hooks
-conan config set hooks.conan-center
-```
-
-The hook will show error messages but the `conan create` won’t fail unless you export the environment variable `CONAN_HOOK_ERROR_LEVEL=40`.
-All hook checks will print a similar message:
-
-```
-[HOOK - conan-center.py] post_source(): [LIBCXX MANAGEMENT (KB-H011)] OK
-[HOOK - conan-center.py] post_package(): ERROR: [PACKAGE LICENSE] No package licenses found
-```
-
-Call `conan create . lib/1.0@` in the folder of the recipe using the profile you want to test. For instance:
-
-```sh
-cd conan-center-index/recipes/boost/all
-conan create conanfile.py boost/1.77.0@
-```
-
-### Updating conan hooks on your machine
-
-The hooks are updated from time to time, so it's worth keeping your own copy of the hooks updated regularly. To do this:
-
-```sh
-conan config install
-```
-
-## Debugging failed builds
-
-Go to the [Error Knowledge Base](error_knowledge_base.md) page to know more about Conan Center hook errors.
-
-Some common errors related to Conan can be found on [troubleshooting](https://docs.conan.io/en/latest/faq/troubleshooting.html) section.
-
-To test with the same enviroment, the [build images](supported_platforms_and_configurations.md#build-images) are available.

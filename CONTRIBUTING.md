@@ -24,8 +24,7 @@ To contribute follow the next steps:
 
 1. Comment in the corresponding issue that you want to contribute the package/fix proposed. If there is no open issue, we strongly suggest
    to open one to gather feedback.
-2. Check the [how_to_add_packages.md](docs/how_to_add_packages.md) if are
-   contributing for a new package.
+2. Check the [how_to_add_packages.md](docs/adding_packages/README.md) if for details about working locally and best practices.
 3. Fork the [CCI repository](https://github.com/conan-io/conan-center-index) and create a `package/xxx` branch from the `master` branch and develop
    your fix/packages as discussed in previous step.
 4. Try to keep your branch updated with the `master` branch to avoid conflicts.
