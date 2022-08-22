@@ -1,15 +1,12 @@
 from conan import ConanFile
-try:
-    from conan.tools.build import check_min_cppstd
-except ImportError:
-    from conans.tools import check_min_cppstd  # FIXME : not in 1.49
-from conan.tools.files import get
+from conan.tools.build import check_min_cppstd
+from conan.tools.files import get, copy
 from conan.tools.cmake import CMake
 from conan.tools.scm import Version
 from conan.errors import ConanInvalidConfiguration
 import os
 
-required_conan_version = ">=1.33.0"
+required_conan_version = ">=1.50.0"
 
 
 class PlatformInterfacesConan(ConanFile):
@@ -27,12 +24,8 @@ class PlatformInterfacesConan(ConanFile):
     no_copy_source = True
 
     @property
-    def _source_subfolder(self):
-        return "source_subfolder"
-
-    @property
     def _internal_cpp_subfolder(self):
-        return os.path.join(self._source_subfolder, "cpp", "Platform.Hashing")
+        return os.path.join(self.source_folder, "cpp", "Platform.Hashing")
 
     @property
     def _compilers_minimum_version(self):
@@ -74,11 +67,11 @@ class PlatformInterfacesConan(ConanFile):
         self.info.header_only()
 
     def source(self):
-        get(self, **self.conan_data["sources"][self.version], destination=self._source_subfolder, strip_root=True)
+        get(self, **self.conan_data["sources"][self.version], destination=self.source_folder, strip_root=True)
 
     def package(self):
-        self.copy("*.h", dst="include", src=self._internal_cpp_subfolder)
-        self.copy("LICENSE", dst="licenses", src=self._source_subfolder)
+        copy(self, "LICENSE", src=self._internal_cpp_subfolder, dst="licenses")
+        copy(self, "*.h", src=self._internal_cpp_subfolder, dst="include")
 
     def package_info(self):
         self.cpp_info.libdirs = []
