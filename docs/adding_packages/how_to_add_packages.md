@@ -14,7 +14,7 @@ folders at a time.
 
 This is the canonical structure of one of these folders, where the same `conanfile.py` recipe is suitable to build all the versions of the library:
 
-:information_source: For the updating the structure with the v2 migration [see here](../v2_migration.md#recipe-structure)
+> :information_source: For the updating the structure with the v2 migration [see here](../v2_migration.md#recipe-structure)
 
 ```
 .
@@ -36,7 +36,16 @@ same structure.
 
 ### `config.yml`
 
-This file lists the versions and the folders where they are located (if there are more than a single `all` folder):
+This file lists the versions that should be built along with the folders where they are located - this should be `all`.
+
+```yml
+versions:
+  "2.1.0":
+    folder: all
+```
+
+It's strongly preferred to only have one one recipe, however if it's no possible to maintain one recipe for all version, older version maybe moved to a
+separate folder.
 
 ```yml
 versions:
