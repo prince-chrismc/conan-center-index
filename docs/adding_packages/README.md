@@ -18,17 +18,34 @@ This process helps conan-center-index against spam and malicious code. The proce
 
 > :warning: The requests are reviewed manually, checking the GitHub profile activity of the requester to avoid a misuse of the service. All interactions are subject to the expectations of the [code of conduct](../code_of_conduct.md). In case of detecting a misuse or inappropriate behavior, the requester will be dropped from the authorized users list and at last instance even banned from the repository.
 
+## Creating a package
+
+The easiest way is to copy an existing recipe that was recently updated and rename the folder. Pick one that uses the same build system to keep things easy.
+
+- recipes names are always lowercase
+- Add only the latest version in the `conandata.yml`
+- Make sure to update the `ConanFile` attributes like `license`, `description`, ect.
+
+In ConanCenter, our belief is recipes should always match upstream, in other words, what the original author(s) intended.
+
+- Options should follow our recommendations as well as match the default of upstream.
+- Package information, libraries, components should match as well. This include supported build system names.
+
+Where dependencies are involved, there's no shortcuts, inspect the upstream's build scripts for how they usually consume them. Pick the Conan generator that matches.
+The most common example is CMake's `find_package` can be satisfied by Conan's `CMakeDeps` generator. There are a few things to be cautious about, many projects
+like to "vendor" other projects within them. This can be files checked into the repository or downloaded during the build process.
+
 ## Submitting a Package
 
 :two: To contribute a package, you can submit a [Pull Request](https://github.com/conan-io/conan-center-index/pulls) to this GitHub repository https://github.com/conan-io/conan-center-index.
 
-The specific steps to add new packages are:
+The specific steps to submitting changes are:
+
 * Fork the [conan-center-index](https://github.com/conan-io/conan-center-index/fork) git repository, and then clone it locally.
 * Make sure you are using the latest [Conan client](https://conan.io/downloads) version, as recipes might evolve introducing features of the newer Conan releases.
-* Create a new folder under `recipes/` with the Conan package recipe.
-  * The format and conventions are explains in [creating a new package guide](how_to_add_packages.md)
-* Commit and Push to GitHub then submit a pull request.
-* Our automated build service will build 100+ different configurations, and provide messages that indicate if there were any issues found during the pull request on GitHub.
+* Build and test the new recipe in several combinations
+* Commit and push to GitHub then submit a pull request.
+* Our automated [build service](#the-build-service) will build 100+ different configurations, and provide messages that indicate if there were any issues found during the pull request on GitHub.
 
 :three: When the pull request is [reviewed and merged](../review_process.md), those packages are published to [JFrog ConanCenter](https://conan.io/center/) and available for everyone.
 
