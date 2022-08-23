@@ -56,6 +56,10 @@ versions:
     folder: all
 ```
 
+- `versions` is a top level dictionary, containing a list of known versions.
+- `folder` is a string entry providing the name of the folder, relative to the current directory where the `conanfile.py` that
+can package that given folder.
+
 It's strongly preferred to only have one one recipe, however if it's no possible to maintain one recipe for all version, older version maybe moved to a
 separate folder.
 
@@ -69,37 +73,6 @@ versions:
     folder: all
 ```
 
-### Supported Versions
-
-In this repository we are building a subset of all the versions for a given library. This set of version changes over time as new versions
-are released and old ones stop being used.
-
-We always welcome latest releases as soon as they are available, and from time to time we remove old versions mainly due to technical reasons:
-the more versions we have, the more resources that are needed in the CI and the more time it takes to build each pull-request (also, the
-more chances of failing because of unexpected errors).
-
-#### Removing old versions
-
-When removing old versions, please follow these considerations:
- - keep one version for every major release
- - for the latest major release, at least three versions should be available (latest three minor versions)
-
-The Conan Team may ask you to remove more if they are taking a lot of resources.
-
-Logic associated to removed revisions, and entries in `config.yml` and `conandata.yml` files should be removed as well. If anyone needs to
-recover them in the future, Git contains the full history and changes can be recovered from it.
-
-Please, note that even if those versions are removed from this repository, **the packages will always be accessible in ConanCenter remote**
-associated to the recipe revision used to build them.
-
-#### Adding old versions
-
-We love to hear why in the opening description of the PR.
-We usually don't add old versions unless there is a specific request for it.
-
-Take into account that the version might be removed in future pull-requests according to the statements above.
-Adding versions that are not used by consumer only requires more resources and time from the CI servers.
-
 ### `conandata.yml`
 
 This file lists **all the sources that are needed to build the package**: source code, license files,... any file that will be used by the recipe
@@ -107,9 +80,14 @@ should be listed here. The file is organized into two sections, `sources` and `p
 for each version of the library. All the files that are downloaded from the internet should include a checksum, so we can validate that
 they are not changed.
 
-> :information_source: Under our mission to ensure quality, patches undergo extra scrutiny. **Make sure to review** our [Modifying sources policy](policy_patching.md)
+For more information about picking source tarballs, adding or removing versions, or what the rules are for patches - continue reading our
+[Sources and Patches](sources_and_patches.md) guide.
 
-A detailed breakdown of all the fields can be found in [conandata_yml_format.md](conandata_yml_format.md). We strongly encourage adding the [patch fields](conandata_yml_format.md#patches-fields) to help track where patches come from and what issue they solve.
+> :information_source: Under our mission to ensure quality, patches undergo extra scrutiny. **Make sure to review** our
+> [Modifying sources policy](sources_and_patches.md#policy-about-patching)
+
+A detailed breakdown of all the fields can be found in [conandata_yml_format.md](conandata_yml_format.md). We strongly recommend adding the
+[patch fields](conandata_yml_format.md#patches-fields) to help track where patches come from and what issue they solve.
 
 Inside the `conanfile.py` recipe, this data is available in a `self.conan_data` attribute that can be used as follows:
 
@@ -126,177 +104,30 @@ def build(self):
     [...]
 ```
 
-#### Sources
+### The _recipe folder_
 
-**Origin of sources:** Library sources should come from an official origin like the library source code repository or the official
-release/download webpage. If an official source archive is available, it should be preferred over an auto-generated archive.
+#### `conanfile.py`
 
-**Source immutability:** Downloaded source code stored under `source` folder should not be modified. Any patch should be applied to the copy of this source code when a build is executed (basically in `build()` method).
+This file is the recipe contain the logic to build the libraries from sources for all the configurations.
+It's the single most important part of writing a package.
 
-**Building from sources:** Recipes should always build packages from library sources.
+Each recipe should derive the `ConanFile` class and implement key attributes and methods.
 
-**Sources not accessible:**
-
-* Library sources that are not publicly available will not be allowed in this repository even if the license allows their redistribution. See
-  our [closed source FAQ answer for more](../faqs.md#how-to-package-libraries-that-depend-on-proprietary-closed-source-libraries).
-
-* If library sources cannot be downloaded from their official origin or cannot be consumed directly due to their
-  format, the recommendation is to contact the publisher and ask them to provide the sources in a way/format that can be consumed
-  programmatically.
-
-* In case of needing those binaries to use them as a "build require" for some library, we will consider following the approach of adding it
-  as a system recipe (`<build_require>/system`) and making those binaries available in the CI machines (if the license allows it).
-
-
-### The _recipe folder_: `conanfile.py`
-
-The main files in this repository are the `conanfile.py` ones that contain the logic to build the libraries from sources for all the configurations,
-as we said before there can be one single recipe suitable for all the versions inside the `all` folder, or there can be several recipes targetting
-different versions in different folders. For maintenance reasons, we prefer to have only one recipe, but sometimes the extra effort doesn't worth
-it and it makes sense to split and duplicate it, there is no common rule for it.
-
-Together with the recipe, there can be other files that are needed to build the library: patches, other files related to build systems (many recipes
-include a `CMakeLists.txt` to run some Conan logic before using the one from the library),... all these files will usually be listed in the
-`exports_sources` attribute and used during the build process.
+- Basic attributes and conversions can be found in [recipe attributes](recipe_attributes.md)
+- Some of the key methods are outline in this document and will link to more details
 
 Also, **every `conanfile.py` should be accompanied by at least one folder to test the generated packages** as we will see below.
 
-#### License Attribute
-
-The mandatory license attribute of each recipe **should** be a [SPDX license](https://spdx.org/licenses/) [short Identifiers](https://spdx.dev/ids/) when applicable.
-
-Where the SPDX guidelines do not apply, packages should do the following:
-
-- When no license is provided or when it's given to the "public domain", the value should be set to [Unlicense](https://spdx.org/licenses/Unlicense) as per [KB-H056](error_knowledge_base.md#kb-h056-license-public-domain) and [FAQ](faqs.md#what-license-should-i-use-for-public-domain).
-- When a custom (e.g. project specific) license is given, the value should be set to `LicenseRef-` as a prefix, followed by the name of the file which contains a custom license. See [this example](https://github.com/conan-io/conan-center-index/blob/e604534bbe0ef56bdb1f8513b83404eff02aebc8/recipes/fft/all/conanfile.py#L8). For more details, [read this conversation](https://github.com/conan-io/conan-center-index/pull/4928/files#r596216206)
-
-#### Settings
-
-All recipes should list the four settings `os`, `arch`, `compiler` and `build_type` so Conan will compute a different package ID
-for each combination. There are some particular cases for this general rule:
-
-* **Recipes for _header only_ libraries** might omit the `settings` attribute, but in any case they should add
-
-   ```python
-   def package_id(self):
-      self.info.header_only()
-   ```
-
-* **Recipes that provide applications** (`b2`, `cmake`, `make`,...) that are generally used as a _build requires_, must list all
-   the settings as well, but they should remove the `compiler` one in the corresponding method unless the recipe provides also
-   libraries that are consumed by other packages:
-
-   ```python
-   def package_id(self):
-      del self.info.settings.compiler
-   ```
-
-   Removing the `compiler` setting reduces the number of configurations generated by the CI, reducing the time and workload and, at the
-   same time, demonstrates the power of Conan behind the package ID logic.
-
-   > Note.- Intentionally, the `build_type` setting should not be removed from the package ID in this case. Preserving this
-   > setting will ensure that the package ID for Debug and Release configurations will be different and both binaries can be
-   > available in the Conan cache at the same time. This enable consumers to switch from one configuration to the other in the case
-   > they want to run or to debug those executables.
-
-#### Options
-
-Recipes can list any number of options with any meaning, and defaults are up to the recipe itself. The CI cannot enforce anything
-in this direction.
-
-##### Recommended feature options names
-
-It's often needed to add options to toggle specific library features on/off. Regardless of the default, there is a strong preference for using positive naming for options. In order to avoid the fragmentation, we recommend to use the following naming conventions for such options:
-
-- enable_<feature> / disable_<feature>
-- with_<dependency> / without_<dependency>
-- use_<feature>
-
-the actual recipe code then may look like:
-
-```py
-    options = {"use_tzdb": [True, False]}
-    default_options = {"use_tzdb": True}
-```
-
-```py
-    options = {"enable_locales": [True, False]}
-    default_options = {"enable_locales": True}
-```
-
-```py
-    options = {"with_zlib": [True, False]}
-    default_options = {"with_zlib": True}
-```
-
-having the same naming conventions for the options may help consumers, e.g. they will be able to specify options with wildcards: `-o *:with_threads=True`, therefore, `with_threads` options will be enabled for all packages in the graph that support it.
-
-##### Known Options
-
-However, there are a couple of options that have a special meaning for the CI:
-
-* `fPIC` (with values `True` or `False`). Default should be `True`.
-
-* `shared` (with values `True` or `False`). Default should be `False`. The CI inspects the recipe looking for this option. If it is found, it will
-   generate all the configurations with values `shared=True` and `shared=False`.
-
-   > Note.- The CI applies `shared=True` only to the package being built, while every other requirement will use their defaults
-   > (typically `shared=False`). It's important to keep this in mind when trying to consume shared packages from ConanCenter
-   > as their requirements were linked inside the shared library. See [FAQs](faqs.md#how-to-consume-a-graph-of-shared-libraries) for more information.
-
-* `header_only` (with values `True` or `False`). Default should be `False`. If the CI detects this option, it will generate all the configurations for the
-   value `header_only=False` and add one more configuration with `header_only=True`. **Only one
-   package** will be generated for `header_only=True`, so it is crucial that the package is actually a _header only_ library, with header files only (no libraries or executables inside).
-
-   Recipes with such option should include the following in their `package_id` method
-
-   ```python
-   def package_id(self):
-      if self.options.header_only:
-         self.info.header_only()
-   ```
-
-   ensuring that, when the option is active, the recipe ignores all the settings and only one package ID is generated.
-
-* `build_testing` should not be added, nor any other related unit test option. Options affect the package ID, therefore, testing should not be part of that.
-   Instead, use Conan config [skip_test](https://docs.conan.io/en/latest/reference/config_files/global_conf.html#tools-configurations) feature:
-
-   ```python
-   def _configure_cmake(self):
-      cmake = CMake(self)
-      cmake.definitions['BUILD_TESTING'] = not self.conf.get("tools.build:skip_test", default=true, check_type=bool)
-   ```
-
-   The `skip_test` configuration is supported by [CMake](https://docs.conan.io/en/latest/reference/build_helpers/cmake.html#test) and [Meson](https://docs.conan.io/en/latest/reference/build_helpers/meson.html#test).
-
-#### Dependencies
+##### Dependencies
 
 When a package needs other packages those are can be include with the `requirements()` methods.
 
 ```python
 def requirements(self):
-    self.require("fmt/8.1.1")
+    self.require("fmt/9.0.0")
 ```
 
-There are rules to follow:
-
-* Version range is not allowed.
-* Specify explicit RREV (recipe revision) of dependencies is not allowed.
-* Only other conan-center recipes are allowed in `requires`/`requirements()` and `build_requires`/`build_requirements()` of a conan-center recipe.
-
-##### Optional Requirements
-
-If a requirement is conditional, this condition must not depend on build context. Build requirements don't have this constraint.
-Add an option, see [naming recommendation](#recommended-feature-options-names), and set the default to make the upstream build system.
-
-##### Requirements Options
-
-Forcing options of dependencies inside a conan-center recipe should be avoided, except if it is mandatory for the library.
-You need to use the `validate()` method in order to ensure they check after the Conan graph is completely built.
-
-##### Handling "internal" dependencies
-
-Vendoring in library source code should be removed (best effort) to avoid potential ODR violations. If upstream takes care to rename symbols, it may be acceptable.
+For more information see the [Dependencies and Requirements](dependencies_and_requirements.md) documentation for more use cases.
 
 #### The test package folders: `test_package`
 
@@ -427,26 +258,3 @@ The [SystemPackageTool](https://docs.conan.io/en/latest/reference/conanfile/meth
 pacman, brew, choco) and install packages which are missing on Conan Center but available for most distributions. It is key to correctly fill in the `cpp_info` for the consumers of a system package to have access to whatever was installed.
 
 As example there are [glu](https://github.com/conan-io/conan-center-index/blob/master/recipes/glu/all/conanfile.py) and [OpenGL](https://github.com/conan-io/conan-center-index/blob/master/recipes/opengl/all/conanfile.py). Also, it will require an exception rule for [conan-center hook](https://github.com/conan-io/hooks#conan-center), a [pull request](https://github.com/conan-io/hooks/pulls) should be open to allow it over the KB-H032.
-
-### Verifying Dependency Version
-
-Some project requirements need to respect a version constraint. This can be enforced in a recipe by accessing the [`deps_cpp_info`](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#deps-cpp-info) attribute.
-An exaple of this can be found in the [spdlog recipe](https://github.com/conan-io/conan-center-index/blob/9618f31c4d9b4da5d06f905befe9691cf105a1fc/recipes/spdlog/all/conanfile.py#L92-L94).
-
-```py
-if tools.Version(self.deps_cpp_info["liba"].version) < "7":
-    raise ConanInvalidConfiguration(f"The project {self.name}/{self.version} requires liba > 7.x")
-```
-
-In Conan version 1.x this needs to be done in the `build` method, in future release is should be done in the `validate` method.
-
-### Verifying Dependency Options
-
-Certain projects are dependant on the configuration (a.k.a options) of a dependency. This can be enforced in a recipe by accessing the [`options`](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#options) attribute.
-An example of this can be found in the [kealib recipe](https://github.com/conan-io/conan-center-index/blob/9618f31c4d9b4da5d06f905befe9691cf105a1fc/recipes/kealib/all/conanfile.py#L44-L46).
-
-```py
-    def validate(self):
-        if not self.options["liba"].enable_feature:
-            raise ConanInvalidConfiguration(f"The project {self.name}/{self.version} requires liba.enable_feature=True.")
-```

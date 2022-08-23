@@ -48,7 +48,6 @@ conan config install
 ## Debugging failed builds
 
 Go to the [Error Knowledge Base](error_knowledge_base.md) page to know more about Conan Center hook errors.
-
 Some common errors related to Conan can be found on [troubleshooting](https://docs.conan.io/en/latest/faq/troubleshooting.html) section.
 
 To test with the same environment, the [build images](supported_platforms_and_configurations.md#build-images) are available.
