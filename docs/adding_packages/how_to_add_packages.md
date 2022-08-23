@@ -6,6 +6,18 @@ Take note of the license and URL for the project, to fill in the `conanfile.py` 
 <!-- toc -->
 ## Contents<!-- endToc -->
 
+## Styling Guidelines
+
+There are many conventions in ConanCenter, a few of them are outline below. They are always to make maintaining the large number of recipes easier for everyone.
+
+### Trailing white-spaces
+
+Avoid trailing white-space characters, if possible
+
+### Quotes
+
+If possible, try to avoid mixing single quotes (`'`) and double quotes (`"`) in python code (`conanfile.py`, `test_package/conanfile.py`). Consistency is preferred.
+
 ## Recipe files structure
 
 Every entry in the `recipes` folder contains all the files required by Conan to create the binaries for all the versions of one library. Those

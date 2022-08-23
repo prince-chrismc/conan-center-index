@@ -8,7 +8,7 @@
 
 * Except CMake and a working build toolchain (compiler, linker, archiver etc), the recipe should not assume that any other build tool is installed on user build machine (like Meson, autotools or pkg-config). On Windows, recipe should not assume that a shell is available (like MSYS2). Therefore, if the buid requires additional build tools, they should be added to `build_requirements()`.
 
-* It is forbidden to run other conan client commands during build. In other words, if upstream build files call conan under the hood (through `cmake-conan` for example or any other logic), this logic must be neutralized.
+* It is forbidden to run other conan client commands during build. In other words, if upstream build files call conan under the hood (through `cmake-conan` for example or any other logic), this logic must be removed.
 
 * Settings from profile should be honored (`build_type`, `compiler.libcxx`, `compiler.cppstd`, `compiler.runtime` etc).
 

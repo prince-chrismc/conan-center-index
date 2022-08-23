@@ -231,7 +231,7 @@ Such patches may contain variables and targets generated only by Conan, but not 
 
 #### patch_source
 
-_Optional_
+_Recommended_
 
 `patch_source` is the URL from where patch was taken from. https scheme is preferred, but other URLs (e.g. git/svn/hg) are also accepted if there is no alternative. Types of patch sources are:
 

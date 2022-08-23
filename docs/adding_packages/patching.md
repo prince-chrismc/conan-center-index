@@ -22,9 +22,8 @@ Make sure the `export_sources` attribute is replaced by the following:
 
 ```py
 def export_sources(self):
-    self.copy("CMakeLists.txt")
     for patch in self.conan_data.get("patches", {}).get(self.version, []):
-        self.copy(patch["patch_file"])
+        files.copy(self, patch["patch_file"])
 ```
 
 ## Applying Patches

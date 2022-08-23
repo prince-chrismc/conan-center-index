@@ -20,10 +20,10 @@ This process helps conan-center-index against spam and malicious code. The proce
 
 ## Creating a package
 
-The easiest way is to copy an existing recipe that was recently updated and rename the folder. Pick one that uses the same build system to keep things easy.
+The easiest way is to copy an existing recipe that was recently updated. Pick one that uses the same build system to keep things easy.
 
-- recipes names are always lowercase
-- Add only the latest version in the `conandata.yml`
+- Rename the folder and recipe - names are always lowercase
+- Add _only_ the latest version in the `conandata.yml`
 - Make sure to update the `ConanFile` attributes like `license`, `description`, ect.
 
 In ConanCenter, our belief is recipes should always match upstream, in other words, what the original author(s) intended.
