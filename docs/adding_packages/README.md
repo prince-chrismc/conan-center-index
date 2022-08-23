@@ -24,7 +24,7 @@ The easiest way is to copy an existing recipe that was recently updated. Pick on
 
 - Rename the folder and recipe - names are always lowercase
 - Add _only_ the latest version in the `conandata.yml`
-- Make sure to update the `ConanFile` attributes like `license`, `description`, ect.
+- Make sure to update the `ConanFile` attributes like `license`, `description`, ect...
 
 In ConanCenter, our belief is recipes should always match upstream, in other words, what the original author(s) intended.
 

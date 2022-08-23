@@ -68,5 +68,5 @@ Example.
 
 ```
 docker run -v/Users/barbarian/.conan:/home/conan/.conan conanio/gcc8 bash -c "conan profile new --detect gcc8"
-docker run -v/Users/barbarian/.conan:/home/conan/.conan conanio/gcc8 bash -c "conan install -pr gcc8 tensorflow-lite/2.9.1@ --build missing"
+docker run -v/Users/barbarian/.conan:/home/conan/.conan conanio/gcc8 bash -c "conan install -pr gcc8 fmt/9.0.0@ --build missing"
 ```
