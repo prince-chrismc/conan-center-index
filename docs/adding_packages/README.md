@@ -14,13 +14,16 @@ Getting started is easy.
 requesting access in this GitHub [issue](https://github.com/conan-io/conan-center-index/issues/4). Feel free to introduce yourself and
 your motivation to join ConanCenter community.
 
-This process helps conan-center-index against spam and malicious code. The process is not not automated on purpose and the requests are generally approved on a weekly basis.
+This process helps ConanCenter against spam and malicious code. The process is not not automated on purpose and the requests are generally approved
+on a weekly basis.
 
-> :warning: The requests are reviewed manually, checking the GitHub profile activity of the requester to avoid a misuse of the service. All interactions are subject to the expectations of the [code of conduct](../code_of_conduct.md). In case of detecting a misuse or inappropriate behavior, the requester will be dropped from the authorized users list and at last instance even banned from the repository.
+> :warning: The requests are reviewed manually, checking the GitHub profile activity of the requester to avoid a misuse of the service.
+> All interactions are subject to the expectations of the [code of conduct](../code_of_conduct.md). In case of detecting a misuse or
+> inappropriate behavior, the requester will be dropped from the authorized users list and at last instance even banned from the repository.
 
 ## Creating a package
 
-The easiest way is to copy an existing recipe that was recently updated. Pick one that uses the same build system to keep things easy.
+:two: The easiest way is to copy an existing recipe that was recently updated. Pick one that uses the same build system to keep things easy.
 
 - Rename the folder and recipe - names are always lowercase
 - Add _only_ the latest version in the `config.yml` and `conandata.yml`
@@ -37,7 +40,7 @@ like to "vendor" other projects within them. This can be files checked into the 
 
 ## Submitting a Package
 
-:two: To contribute a package, you can submit a [Pull Request](https://github.com/conan-io/conan-center-index/pulls) to this GitHub repository https://github.com/conan-io/conan-center-index.
+:three: To contribute a package, you can submit a [Pull Request](https://github.com/conan-io/conan-center-index/pulls) to this GitHub repository https://github.com/conan-io/conan-center-index.
 
 The specific steps to submitting changes are:
 
@@ -47,7 +50,7 @@ The specific steps to submitting changes are:
 * Commit and push to GitHub then submit a pull request.
 * Our automated [build service](#the-build-service) will build 100+ different configurations, and provide messages that indicate if there were any issues found during the pull request on GitHub.
 
-:three: When the pull request is [reviewed and merged](../review_process.md), those packages are published to [JFrog ConanCenter](https://conan.io/center/) and available for everyone.
+When the pull request is [reviewed and merged](../review_process.md), those packages are published to [JFrog ConanCenter](https://conan.io/center/) and available for everyone.
 
 ## The Build Service
 
