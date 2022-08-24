@@ -7,7 +7,13 @@ Getting started is easy. Try building an existing package with our [developing r
 To deepen you understanding, start with the [Folders and Files](folders_and_files.md) guide.
 
 <!-- toc -->
-## Contents<!-- endToc -->
+## Contents
+
+  * [Request access](#request-access)
+  * [Creating a package](#creating-a-package)
+  * [Submitting a Package](#submitting-a-package)
+  * [How to provide a good recipe](#how-to-provide-a-good-recipe)
+  * [The Build Service](#the-build-service)<!-- endToc -->
 
 ## Request access
 

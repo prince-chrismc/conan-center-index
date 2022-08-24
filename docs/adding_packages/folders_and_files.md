@@ -4,7 +4,18 @@ First thing is know what library you want to add. Conan packages are always lowe
 Take note of the license and URL for the project, to fill in the `conanfile.py` attributes later.
 
 <!-- toc -->
-## Contents<!-- endToc -->
+## Contents
+
+  * [Styling Guidelines](#styling-guidelines)
+    * [Trailing Whitespace](#trailing-whitespace)
+    * [Quotes](#quotes)
+  * [Recipe File Structure](#recipe-file-structure)
+    * [`config.yml`](#configyml)
+    * [The _recipe folder_](#the-_recipe-folder_)
+      * [`conandata.yml`](#conandatayml)
+      * [`conanfile.py`](#conanfilepy)
+        * [Dependencies](#dependencies)
+      * [The test package folders: `test_package`](#the-test-package-folders-test_package)<!-- endToc -->
 
 ## Styling Guidelines
 

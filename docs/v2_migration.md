@@ -3,6 +3,7 @@
 <!-- toc -->
 ## Contents
 
+  * [Recipe Structure](#recipe-structure)
   * [New cpp_info set_property model](#new-cpp_info-set_property-model)
     * [CMakeDeps](#cmakedeps)
     * [Update required_conan_version to ">=1.43.0"](#update-required_conan_version-to-1430)

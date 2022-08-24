@@ -2,7 +2,14 @@
 
 
 <!-- toc -->
-## Contents<!-- endToc -->
+## Contents
+
+    * [Files and Structure](#files-and-structure)
+    * [CMake targets](#cmake-targets)
+      * [CMakeLists.txt](#cmakeliststxt)
+      * [V1 CMakeLists.txt](#v1-cmakeliststxt)
+      * [Testing more generators with `test_<something>`](#testing-more-generators-with-test_something)
+    * [Minimalist Source Code](#minimalist-source-code)<!-- endToc -->
 
 ### Files and Structure
 

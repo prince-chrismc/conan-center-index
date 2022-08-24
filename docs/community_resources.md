@@ -5,6 +5,7 @@ This is a curated list of various bots and helpful tools that aim to making appr
 <!-- toc -->
 ## Contents
 
+  * [Social Media and More](#social-media-and-more)
   * [Bots](#bots)
   * [Tools](#tools)<!-- endToc -->
 

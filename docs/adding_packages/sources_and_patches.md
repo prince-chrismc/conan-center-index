@@ -7,7 +7,19 @@ There are two main files to list the versions of a package:
 
 
 <!-- toc -->
-## Contents<!-- endToc -->
+## Contents
+
+  * [Picking the Sources](#picking-the-sources)
+    * [Supported Versions](#supported-versions)
+      * [Removing old versions](#removing-old-versions)
+      * [Adding old versions](#adding-old-versions)
+  * [Policy about patching](#policy-about-patching)
+  * [Patches: format and conventions](#patches-format-and-conventions)
+    * [Location in the recipe folder](#location-in-the-recipe-folder)
+    * [Exporting Patches](#exporting-patches)
+    * [Applying Patches](#applying-patches)
+    * [Rules](#rules)
+    * [Exceptions](#exceptions)<!-- endToc -->
 
 ## Picking the Sources
 

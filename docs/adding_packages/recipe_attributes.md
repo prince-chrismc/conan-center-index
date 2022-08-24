@@ -4,7 +4,16 @@ The `ConanFile` class has a lot of different properties that can help consumers 
 or are known by ConanCenter's build service and have special meaning.
 
 <!-- toc -->
-## Contents<!-- endToc -->
+## Contents
+
+  * [Name attribute](#name-attribute)
+  * [Version attribute](#version-attribute)
+  * [License Attribute](#license-attribute)
+  * [Settings](#settings)
+  * [Options](#options)
+    * [Recommended Names](#recommended-names)
+    * [Known Options](#known-options)
+    * [Disallowed Options](#disallowed-options)<!-- endToc -->
 
 ## Name attribute
 

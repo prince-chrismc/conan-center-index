@@ -3,7 +3,15 @@
 One of the early steps for contributing get getting familiar with the Conan client. There's also a few steps you need to take to get your environment setup.
 
 <!-- toc -->
-## Contents<!-- endToc -->
+## Contents
+
+  * [Clone your fork](#clone-your-fork)
+  * [Setup your environment](#setup-your-environment)
+  * [Basic Commands](#basic-commands)
+  * [Installing the ConanCenter Hooks](#installing-the-conancenter-hooks)
+    * [Updating conan hooks on your machine](#updating-conan-hooks-on-your-machine)
+  * [Debugging failed builds](#debugging-failed-builds)
+  * [Testing more environments](#testing-more-environments)<!-- endToc -->
 
 ## Clone your fork
 
