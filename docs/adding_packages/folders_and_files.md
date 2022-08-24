@@ -37,7 +37,7 @@ folders at a time.
 
 This is the canonical structure of one of these folders, where the same `conanfile.py` recipe is suitable to build all the versions of the library:
 
-> :information_source: For updating the structure during the v2 migration see the [test package](test_package.md) document.
+> **Note**: For updating the structure during the v2 migration see the [test package](test_package.md) document.
 
 ```
 .
@@ -133,7 +133,7 @@ Each recipe should derive the `ConanFile` class and implement key attributes and
 - Basic attributes and conversions can be found in [recipe attributes](recipe_attributes.md)
 - Some of the key methods are outline in this document and will link to more details
 
-Also, **every `conanfile.py` should be accompanied by at least one folder to test the generated packages** as we will see below.
+Every `conanfile.py` should be accompanied by at least one [folder to test the generated packages](#the-test-package-folders-test_package).
 
 ##### Dependencies
 
