@@ -15,7 +15,7 @@ Take note of the license and URL for the project, to fill in the `conanfile.py` 
       * [`conandata.yml`](#conandatayml)
       * [`conanfile.py`](#conanfilepy)
         * [Dependencies](#dependencies)
-      * [The test package folders: `test_package`](#the-test-package-folders-test_package)<!-- endToc -->
+      * [`test_package`](#test_package)<!-- endToc -->
 
 ## Styling Guidelines
 
@@ -133,7 +133,7 @@ Each recipe should derive the `ConanFile` class and implement key attributes and
 - Basic attributes and conversions can be found in [recipe attributes](recipe_attributes.md)
 - Some of the key methods are outline in this document and will link to more details
 
-Every `conanfile.py` should be accompanied by at least one [folder to test the generated packages](#the-test-package-folders-test_package).
+Every `conanfile.py` should be accompanied by at least one [folder to test the generated packages](#test_package).
 
 ##### Dependencies
 
@@ -146,7 +146,7 @@ def requirements(self):
 
 For more information see the [Dependencies and Requirements](dependencies_and_requirements.md) documentation for more use cases.
 
-#### The test package folders: `test_package`
+#### `test_package`
 
 All the packages in this repository need to be tested before they join ConanCenter. A `test_package` folder with its corresponding `conanfile.py` and
 a minimal project to test the package is strictly required. You can read about it in the
