@@ -10,6 +10,12 @@ One of the early steps for contributing get getting familiar with the Conan clie
 1. Follow the GitHub UI to [fork this repository](https://github.com/prince-chrismc/conan-center-index/fork)
 2. [Clone your fork](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 
+## Setup your environment
+
+1. Install a C++ development toolchain - ConanCenter's [build images](#testing-more-environments) are available
+2. Install the Conan client - make sure to keep it up to date!
+3. Install CMake - this is the only tool which is assumed to be present
+
 ## Basic Commands
 
 We recommend working from the `recipes/project` folder itself, this is because you can only change one recipe per pull request, and will help prevent making most mistakes.

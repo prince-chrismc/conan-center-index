@@ -4,6 +4,28 @@
 <!-- toc -->
 ## Contents<!-- endToc -->
 
+### Files and Structure
+
+A Complete folder structure (including the [V2 Migration](../v2_migration.md)) looks as follows
+
+```
+.
++-- recipes
+|   +-- library_name/
+|       +-- config.yml
+|       +-- all/
+|           +-- conanfile.py
+|           +-- conandata.yml
+|           +-- patches/
+|               +-- add-missing-string-header-2.0.0.patch
+|           +-- test_package/
+|               +-- conanfile.py
+|               +-- CMakeLists.txt
+|               +-- test_package.cpp
+|           +-- test_v1_package/
+|               +-- conanfile.py
+|               +-- CMakeLists.txt
+```
 
 ### CMake targets
 
@@ -66,16 +88,13 @@ project files as simple as possible, without the need of extra logic to handle d
 |   +-- library_name/
 |       +-- config.yml
 |       +-- all/
-|           +-- conanfile.py
-|           +-- conandata.yml
+|           +-- ...
 |           +-- test_package/
-|               +-- conanfile.py
-|               +-- CMakeLists.txt
-|               +-- main.cpp
+|               +-- ...
 |           +-- test_cmakedeps/
 |               +-- conanfile.py
 |               +-- CMakeLists.txt
-|               +-- conanfile.py
+|               +-- test_package.cpp
 ```
 
 ### Minimalist Source Code

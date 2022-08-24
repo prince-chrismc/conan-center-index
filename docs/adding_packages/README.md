@@ -1,9 +1,10 @@
 # Adding Packages to ConanCenter
 
-ConanCenter aims to provide the best quality packages open for any open source project.
-Any C/C++ project can be made available.
+ConanCenter aims to provide the best quality packages for any open source project.
+Any C/C++ project can be made available by contributing a "recipe".
 
-Getting started is easy.
+Getting started is easy. Try building an existing package with our [developing recipes](developing_recipes_locally.md) tutorial.
+To deepen you understanding, start with the [Folders and Files](folders_and_files.md) guide.
 
 <!-- toc -->
 ## Contents<!-- endToc -->
@@ -44,13 +45,21 @@ like to "vendor" other projects within them. This can be files checked into the 
 
 The specific steps to submitting changes are:
 
-* Fork the [conan-center-index](https://github.com/conan-io/conan-center-index/fork) git repository, and then clone it locally.
+* Fork and then clone the [conan-center-index](https://github.com/conan-io/conan-center-index/fork) git repository.
 * Make sure you are using the latest [Conan client](https://conan.io/downloads) version, as recipes might evolve introducing features of the newer Conan releases.
-* Build and test the new recipe in several combinations
+* Build and test the new recipe in several combinations. Check [developing recipes](developing_recipes_locally.md) for tips.
 * Commit and push to GitHub then submit a pull request.
 * Our automated [build service](#the-build-service) will build 100+ different configurations, and provide messages that indicate if there were any issues found during the pull request on GitHub.
 
-When the pull request is [reviewed and merged](../review_process.md), those packages are published to [JFrog ConanCenter](https://conan.io/center/) and available for everyone.
+When the pull request is [reviewed and merged](../review_process.md), those packages are published to [JFrog's ConanCenter](https://conan.io/center/) and available for everyone.
+
+## How to provide a good recipe
+
+The [recipes](https://github.com/conan-io/conan-center-index/tree/master/recipes) available in CCI can be used as good examples, you can use them as the base for your recipe. However it is important to note Conan features change over time and our best practices evolve so some minor details may be out of date due to the vast number of recipes.
+
+Here's a short list of good examples
+
+- TODO!
 
 ## The Build Service
 

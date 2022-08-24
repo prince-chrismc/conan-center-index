@@ -33,24 +33,7 @@ Some notes:
 - old test_package is moved to v1
 - keep one .cpp
 
-```
-.
-+-- recipes
-|   +-- library_name/
-|       +-- config.yml
-|       +-- all/
-|           +-- conanfile.py
-|           +-- conandata.yml
-|           +-- patches/
-|               +-- add-missing-string-header.patch
-|           +-- test_package/
-|               +-- conanfile.py
-|               +-- CMakeLists.txt
-|               +-- test_package.cpp
-|           +-- test_v1_package/
-|               +-- conanfile.py
-|               +-- CMakeLists.txt
-```
+See the [test package structure](adding_packages/test_packages.md) for more details.
 
 ## New cpp_info set_property model
 

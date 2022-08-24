@@ -10,7 +10,7 @@ Take note of the license and URL for the project, to fill in the `conanfile.py` 
 
 There are many conventions in ConanCenter, a few of them are outline below. They are always to make maintaining the large number of recipes easier for everyone.
 
-### Trailing white-spaces
+### Trailing Whitespace
 
 Avoid trailing white-space characters, if possible
 
@@ -18,7 +18,7 @@ Avoid trailing white-space characters, if possible
 
 If possible, try to avoid mixing single quotes (`'`) and double quotes (`"`) in python code (`conanfile.py`, `test_package/conanfile.py`). Consistency is preferred.
 
-## Recipe files structure
+## Recipe File Structure
 
 Every entry in the `recipes` folder contains all the files required by Conan to create the binaries for all the versions of one library. Those
 files don't depend on any other file in the repository (we are not using `python_requires`) and every pull-request can modify only one of those
@@ -26,7 +26,7 @@ folders at a time.
 
 This is the canonical structure of one of these folders, where the same `conanfile.py` recipe is suitable to build all the versions of the library:
 
-> :information_source: For the updating the structure with the v2 migration [see here](../v2_migration.md#recipe-structure)
+> :information_source: For updating the structure during the v2 migration see the [test package](test_package.md) document.
 
 ```
 .
@@ -36,6 +36,8 @@ This is the canonical structure of one of these folders, where the same `conanfi
 |       +-- all/
 |           +-- conanfile.py
 |           +-- conandata.yml
+|           +-- patches/
+|               +-- add-missing-string-header-2.1.0.patch
 |           +-- test_package/
 |               +-- conanfile.py
 |               +-- CMakeLists.txt
@@ -145,8 +147,3 @@ a minimal project to test the package is strictly required. You can read about i
 
 Remember that the `test_<package>` recipes should **test the package configuration that has just been generated** for the _host_ context, otherwise
 it will fail in cross-building scenarios.
-
-## How to provide a good recipe
-
-The [recipes](https://github.com/conan-io/conan-center-index/tree/master/recipes) available in CCI can be used as good examples, you can use them as the base for your recipe. However it is important to note Conan features change over time and our best practices evolve so some minor details may be out of date due to the vast number of recipes.
-
