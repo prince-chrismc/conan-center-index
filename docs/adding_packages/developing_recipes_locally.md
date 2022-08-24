@@ -5,6 +5,11 @@ One of the early steps for contributing get getting familiar with the Conan clie
 <!-- toc -->
 ## Contents<!-- endToc -->
 
+## Clone your fork
+
+1. Follow the GitHub UI to [fork this repository](https://github.com/prince-chrismc/conan-center-index/fork)
+2. [Clone your fork](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+
 ## Basic Commands
 
 We recommend working from the `recipes/project` folder itself, this is because you can only change one recipe per pull request, and will help prevent making most mistakes.
@@ -16,8 +21,8 @@ ConanCenter also tests a few support settings/options, so `conan create all/cona
 Try it yourself, for instance:
 
 ```sh
-cd conan-center-index/recipes/fmt
-conan create all/conanfile.py boost/9.0.0@
+cd recipes/fmt
+conan create all/conanfile.py fmt/9.0.0@
 ```
 
 ## Installing the ConanCenter Hooks
