@@ -175,6 +175,12 @@ All the packages in this repository need to be tested before they join ConanCent
 a minimal project to test the package is strictly required. You can read about it in the
 [Conan documentation](https://docs.conan.io/en/latest/creating_packages/getting_started.html#the-test-package-folder).
 
+The goal for the test package is to make sure the 
+
+- header files are available
+- libraries are availble to link against
+- components are correctly exposed
+
 > **Note** It's encouraged to verify old generator are not broken for - you can do so by using the pattern
 > `test_v1_*/conanfile.py` for the folder. Please, have a look to [linter notes](v2_linter.md) to know how to prevent the linter from
 > checking these files.
