@@ -14,7 +14,6 @@ Take note of the license and URL for the project, to fill in the `conanfile.py` 
     * [The _recipe folder_](#the-_recipe-folder_)
       * [`conandata.yml`](#conandatayml)
       * [`conanfile.py`](#conanfilepy)
-        * [Dependencies](#dependencies)
       * [`test_package`](#test_package)<!-- endToc -->
 
 ## Styling Guidelines
