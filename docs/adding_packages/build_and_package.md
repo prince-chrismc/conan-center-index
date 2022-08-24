@@ -1,7 +1,16 @@
 # Packaging Policy
 
 <!-- toc -->
-## Contents<!-- endToc -->
+## Contents
+
+  * [Build Method](#build-method)
+  * [Package Method](#package-method)
+  * [Build System Examples](#build-system-examples)
+    * [Header Only](#header-only)
+    * [CMake](#cmake)
+    * [Autotools](#autotools)
+    * [No Upstream Build Scripts](#no-upstream-build-scripts)
+    * [System Packages](#system-packages)<!-- endToc -->
 
 ## Build Method
 
