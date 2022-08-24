@@ -5,6 +5,7 @@ Any C/C++ project can be made available by contributing a "recipe".
 
 Getting started is easy. Try building an existing package with our [developing recipes](developing_recipes_locally.md) tutorial.
 To deepen you understanding, start with the [Folders and Files](folders_and_files.md) guide.
+You can follow the three steps (:one: :two: :three:) described below! :tada:
 
 <!-- toc -->
 ## Contents
@@ -23,22 +24,25 @@ your motivation to join ConanCenter community.
 
 This process helps ConanCenter against spam and malicious code. The process is not not automated on purpose and the requests are generally approved
 on a weekly basis.
- 
-> **Note** The requests are reviewed manually, checking the GitHub profile activity of the requester to avoid a misuse of the service.
-> All interactions are subject to the expectations of the [code of conduct](../code_of_conduct.md). Any misuse or inappropriate behavior -
-> The requester will be dropped from the authorized users list in addition.
+
+> **Note** The requests are reviewed manually, checking the GitHub profile activity of the requester to avoid any misuse of the service.
+> All interactions are subject to the expectations of the [code of conduct](../code_of_conduct.md). Any misuse or inappropriate behavior are subject
+> to the same principals.
 
 ## Creating a package
 
-:two: The easiest way is to copy an existing recipe that was recently updated. Pick one that uses the same build system to keep things easy.
+:two: The easiest way is to copy an existing recipe that was recently updated. Pick one, [from the list below](#how-to-provide-a-good-recipe),
+that uses the same build system to keep things easy.
+
+Quickly, there's a few items to look at:
 
 - Rename the folder and recipe - names are always lowercase
-- Add _only_ the latest version in the `config.yml` and `conandata.yml`
-- Make sure to update the `ConanFile` attributes like `license`, `description`, ect...
+- Add _only_ the latest version in the [`config.yml`](folders_and_files.md#configyml) and [`conandata.yml`](folders_and_files.md#conandatayml)
+- Make sure to update the [`ConanFile` attributes](recipe_attributes.md) like `license`, `description`, ect...
 
 In ConanCenter, our belief is recipes should always match upstream, in other words, what the original author(s) intended.
 
-- Options should follow our recommendations as well as match the default of upstream.
+- Options should [follow the recommendations](recipe_attributes.md#options) as well as match the default of upstream.
 - Package information, libraries, components should match as well. This include supported build system names.
 
 Where dependencies are involved, there's no shortcuts, inspect the upstream's build scripts for how they usually consume them. Pick the Conan generator that matches.
