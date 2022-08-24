@@ -276,7 +276,7 @@ instead, the libraries that depend on *MKL*, *IPP* or *DNN* should use the follo
 * `intel-ipp/<version>`, e.g. `intel-ipp/2021`
 * `intel-dnn/<version>`, e.g. `intel-dnn/2021`
 
-**NOTE**: These references are not available in ConanCenter and will likely never be! it's the consumer's responsibility to provide the recipes for these libraries.
+**Note**: These references are not available in ConanCenter and will likely never be! it's the consumer's responsibility to provide the recipes for these libraries.
 
 
 Since these references will be never available in ConanCenter, they will be deactivated in the consuming recipes by default:
@@ -367,7 +367,7 @@ In order to consume all those libraries as shared ones, building from sources is
 easily achievable using `*:shared=True` in the _host_ profile and `--build` in the install command. With these inputs,
 Conan will build from sources all the packages and use the shared libraries when linking.
 
-> ℹ️ Note: If you are hosting your own recipes, the proper solution for recipes would be to use something like
+> **Note**: If you are hosting your own recipes, the proper solution for recipes would be to use something like
 > [`shared_library_package_id`](https://docs.conan.io/en/latest/reference/conanfile/methods.html?highlight=shared_library_package_id#self-info-shared-library-package-id),
 > that will encode this information in the package ID and ensure that any change in the static libraries that are
 > embedded into a shared one is taken into account when computing the package ID.

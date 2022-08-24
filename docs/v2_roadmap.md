@@ -19,9 +19,9 @@
     * [Webpage with v2 information](#webpage-with-v2-information)
   * [Future](#future)<!-- endToc -->
 
-> ⚠️ **Note.-** This document is not a [guide about how to migrate recipes to Conan v2](v2_migration.md).
+> **Note** This document is not a [guide about how to migrate recipes to Conan v2](v2_migration.md).
 
-> ⚠️ **Note.-** This is a working document that will be updated as we walk
+> **Note** This is a working document that will be updated as we walk
 > this path. There are no dates intentionally, and if any they should be
 > considered as an estimation, there are still some unknowns to provide
 > certain steps and dates.
@@ -38,11 +38,11 @@ subset of features that will work using Conan v1 and v2**.
 
 **Our main goal in ConanCenter during this migration process is to ensure
 that recipes work with v1 and v2** and to make the transition as smooth as
-possible for contributors and users. In the end we will be providing 
+possible for contributors and users. In the end we will be providing
 working recipes and binaries for both versions.
 
 This process will require a lot of work also in the internals, we will keep
-communicating those changes and the relevant updates in the 
+communicating those changes and the relevant updates in the
 [changelog](changelog.md). Here there are the main steps that we are
 planning for the following months.
 
@@ -50,9 +50,9 @@ planning for the following months.
 
 ### Prepare the CI infrastructure
 
-Workers for Conan v2 will be ready for Windows, Macos and Linux alternatives. 
-[Modern docker images](https://github.com/conan-io/conan-docker-tools/tree/master/modern) with Conan v2 are already 
-available to use, for example `conanio/gcc11-ubuntu16.04:2.0.0-pre`. 
+Workers for Conan v2 will be ready for Windows, Macos and Linux alternatives.
+[Modern docker images](https://github.com/conan-io/conan-docker-tools/tree/master/modern) with Conan v2 are already
+available to use, for example `conanio/gcc11-ubuntu16.04:2.0.0-pre`.
 Note that we will be using tag name `2.0.0-pre` until there is an
 actual Conan v2 release, this tag will use the latest pre-release
 available (alpha, beta or release candidate).
@@ -60,7 +60,7 @@ available (alpha, beta or release candidate).
 ### Export recipes using Conan v2 (warning)
 
 We will start to run `conan export` using Conan v2 and the result will be
-added to the comments by the bot. Failing this command won't make the 
+added to the comments by the bot. Failing this command won't make the
 pull-request fail at this moment, but we expect contributors to start
 gaining awareness about changes in Conan v2.
 
@@ -69,7 +69,7 @@ gaining awareness about changes in Conan v2.
 We want to provide a Conan recipe's linter in this repository. We will add
 warnings and errors to it following the pace dictated by the community.
 The purpose is that this linter will fail pull-requests if there is any
-error and, this way, we can start to migrate small (and easy) bits of 
+error and, this way, we can start to migrate small (and easy) bits of
 recipes... and ensure that future pull-requests don't introduce
 regressions.
 

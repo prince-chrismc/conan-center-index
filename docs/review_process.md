@@ -115,9 +115,9 @@ At least 2 approving reviews are required, and at least one of them has to be fr
 So, it might be 1 official + 1 community, or 2 official, but it couldn't be just 2 community reviews.
 Approvals are only counted if they are associated with the latest commit in the PR, while "Change requested" ones (from the Conan team) will persist even if there are new commits. Don't hesitate to dismiss old reviews if the issues have already been addressed.
 
-> **Note.-** Pull requests labelled as [`Bump version`](https://github.com/conan-io/conan-center-index/pulls?q=is%3Aopen+is%3Apr+label%3A%22Bump+version%22)
+> **Note** Pull requests labelled as [`Bump version`](https://github.com/conan-io/conan-center-index/pulls?q=is%3Aopen+is%3Apr+label%3A%22Bump+version%22)
 > or [`Bump dependencies`](https://github.com/conan-io/conan-center-index/pulls?q=is%3Aopen+is%3Apr+label%3A%22Bump+dependencies%22+) are merged by
-> the bot without requiring any approval. 
+> the bot without requiring any approval.
 
 ### Reviews from others
 
@@ -144,7 +144,7 @@ PR is selected for the merge only if:
 
 If these conditions are fulfilled, the PR is merged (associated issues are automatically closed), and then the build of `master` is launched.
 
-The conan-center-bot will perform a [squash and merge](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges#squash-and-merge-your-pull-request-commits). You don't need to rebase 
+The conan-center-bot will perform a [squash and merge](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges#squash-and-merge-your-pull-request-commits). You don't need to rebase
 your pull request, we ask you not to do it because it will dismiss any reviews and the reviewer will need to restart.
 
 ### Merge

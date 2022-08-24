@@ -58,7 +58,7 @@ We will cover some cases of porting all the information set with the current mod
 new one. To read more about the properties available for each generator and how the
 properties model work, please check the [Conan documentation](https://docs.conan.io/en/latest/conan_v2.html#editables-don-t-use-external-templates-any-more-new-layout-model).
 
-> ⚠️ **Note**: Please, remember that the **new** ``set_property`` and the **current** attributes
+> **Note**: Please, remember that the **new** ``set_property`` and the **current** attributes
 > model are *completely independent since Conan 1.43*. Setting ``set_property`` in recipes will
 > not affect current CMake 1.X generators (``cmake``, ``cmake_multi``, ``cmake_find_package`` and
 > ``cmake_find_package_multi``) at all.
@@ -208,7 +208,7 @@ class ExpatConan(ConanFile):
         ...
 ```
 
-> ⚠️ **Note**: There are more cases in which you probably want to set the
+> *Note**: There are more cases in which you probably want to set the
 > ``cmake_find_mode`` property to ``both``. For example, for the libraries which [find
 > modules files are included in the CMake
 > distribution](https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html#find-modules).
