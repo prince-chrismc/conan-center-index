@@ -43,7 +43,7 @@ Quickly, there's a few items to look at:
 In ConanCenter, our belief is recipes should always match upstream, in other words, what the original author(s) intended.
 
 - Options should [follow the recommendations](recipe_attributes.md#options) as well as match the default of upstream.
-- Package information, libraries, components should match as well. This include supported build system names.
+- [Package information](build_and_package.md), libraries, components should match as well. This includes exposing supported build system names.
 
 Where dependencies are involved, there's no shortcuts, inspect the upstream's build scripts for how they usually consume them. Pick the Conan generator that matches.
 The most common example is CMake's `find_package` can be satisfied by Conan's `CMakeDeps` generator. There are a few things to be cautious about, many projects
