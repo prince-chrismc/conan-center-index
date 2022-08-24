@@ -106,8 +106,8 @@ sources:
 For more information about picking source tarballs, adding or removing versions, or what the rules are for patches - continue reading our
 [Sources and Patches](sources_and_patches.md) guide.
 
-> :information_source: Under our mission to ensure quality, patches undergo extra scrutiny. **Make sure to review** our
-> [Modifying sources policy](sources_and_patches.md#policy-about-patching)
+> **Note**: Under our mission to ensure quality, patches undergo extra scrutiny. **Make sure to review** our
+> [modifying sources policy](sources_and_patches.md#policy-about-patching) before making changes.
 
 A detailed breakdown of all the fields can be found in [conandata_yml_format.md](conandata_yml_format.md). We strongly recommend adding the
 [patch fields](conandata_yml_format.md#patches-fields) to help track where patches come from and what issue they solve.
