@@ -23,10 +23,10 @@ your motivation to join ConanCenter community.
 
 This process helps ConanCenter against spam and malicious code. The process is not not automated on purpose and the requests are generally approved
 on a weekly basis.
-
-> :warning: The requests are reviewed manually, checking the GitHub profile activity of the requester to avoid a misuse of the service.
+ 
+> **Note** The requests are reviewed manually, checking the GitHub profile activity of the requester to avoid a misuse of the service.
 > All interactions are subject to the expectations of the [code of conduct](../code_of_conduct.md). Any misuse or inappropriate behavior -
-> the requester will be dropped from the authorized users list in addition.
+> The requester will be dropped from the authorized users list in addition.
 
 ## Creating a package
 
