@@ -127,15 +127,12 @@ for more use case and examples.
 
 This file is the recipe contain the logic to build the libraries from sources for all the configurations.
 It's the single most important part of writing a package.
+Every `conanfile.py` should be accompanied by at least one [folder to test the generated packages](#test_package).
 
 Each recipe should derive the `ConanFile` class and implement key attributes and methods.
 
 - Basic attributes and conversions can be found in [recipe attributes](recipe_attributes.md)
 - Some of the key methods are outline in this document and will link to more details
-
-Every `conanfile.py` should be accompanied by at least one [folder to test the generated packages](#test_package).
-
-##### Dependencies
 
 When a package needs other packages those are can be include with the `requirements()` methods.
 
@@ -145,6 +142,33 @@ def requirements(self):
 ```
 
 For more information see the [Dependencies and Requirements](dependencies_and_requirements.md) documentation for more use cases.
+
+For compiled libraries, the `build()` method is used along side the [build helpers](https://docs.conan.io/en/latest/reference/build_helpers.html).
+List allows you to use the official build script from a project, see [build and package](build_and_package.md) instructions.
+
+```python
+    def build(self):
+        cmake = CMake(self)
+        cmake.configure()
+        cmake.build()
+```
+
+Most project's with build scripts support installing the important files. Avoid installing documentation or examples.
+
+```python
+    def package(self):
+        cmake = CMake(self)
+        cmake.configure()
+        cmake.install()
+```
+
+For some projects, you will need to manually copy files.
+Here's an example for a header only library:
+
+```python
+    def package(self):
+        files.copy(self, "*.h", src=os.path.join(self.source_folder, "include"), dst=os.path.join(self.package_folder, "include"))
+```
 
 #### `test_package`
 
