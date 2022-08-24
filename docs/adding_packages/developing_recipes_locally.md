@@ -37,6 +37,8 @@ Try it yourself, for instance:
 ```sh
 cd recipes/fmt
 conan create all/conanfile.py fmt/9.0.0@
+conan create all/conanfile.py fmt/9.0.0@ -o fmt:header_only=True
+conan create all/conanfile.py fmt/9.0.0@ -s build_type=Debug -o fmt:shared=True
 ```
 
 ## Installing the ConanCenter Hooks
