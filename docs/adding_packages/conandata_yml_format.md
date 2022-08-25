@@ -2,7 +2,7 @@
 
 [conandata.yml](https://docs.conan.io/en/latest/reference/config_files/conandata.yml.html) is a [YAML](https://yaml.org/) file to provide declarative data for the recipe (which is imperative).
 
-`conandata.yml` is a built-in Conan feature (available since 1.22.0) without a fixed structure, but ConanCenter uses it for its own purposes.
+[`conandata.yml` is a built-in Conan feature](https://docs.conan.io/en/latest/reference/config_files/conandata.yml.html) (available since 1.22.0) without a fixed structure, but ConanCenter uses it for its own purposes.
 
 In the context of conan-center-index, this file is mandatory and consists of two main sections that we will explain in the next sections with more detail:
 
