@@ -7,6 +7,18 @@ Getting started is easy. Try building an existing package with our [developing r
 To deepen you understanding, start with the [Folders and Files](folders_and_files.md) guide.
 You can follow the three steps (:one: :two: :three:) described below! :tada:
 
+The documents in this folder are written with a flow; however feel free to hope around as you work!
+
+1. [Folders and Files](folders_and_files.md)
+2. [Sources and Patches](sources_and_patches.md)
+   1. [`conandata.yml` format](conandata_yml_format.md)
+3. [Recipe Attributes](recipe_attributes.md)
+4. [Requirements](dependencies_and_requirements.md)
+5. [Build and Package](build_and_package.md)
+   1. [Revist Patches](sources_and_patches.md#policy-about-patching)
+6. [Test Package](test_packages.md)
+
+
 <!-- toc -->
 ## Contents
 
