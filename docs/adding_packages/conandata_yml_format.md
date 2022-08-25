@@ -1,13 +1,13 @@
 # conandata.yml
 
-[conandata.yml](https://docs.conan.io/en/latest/reference/config_files/conandata.yml.html) is a [YAML](https://yaml.org/) file to provide declarative data for the recipe (which is imperative).
+[conandata.yml](https://docs.conan.io/en/latest/reference/config_files/conandata.yml.html) is a [YAML](https://yaml.org/)
+file to provide declarative data for the recipe (which is imperative). This is a built-in Conan feature (available since
+1.22.0) without a fixed structure, but ConanCenter has a specific format to ensure quality of recipes.
 
-[`conandata.yml` is a built-in Conan feature](https://docs.conan.io/en/latest/reference/config_files/conandata.yml.html) (available since 1.22.0) without a fixed structure, but ConanCenter uses it for its own purposes.
-
-In the context of conan-center-index, this file is mandatory and consists of two main sections that we will explain in the next sections with more detail:
+In the context of conan-center-index, this file is _mandatory_ and consists of two main entries:
 
  * `sources`: Library sources origin with their verification checksums.
- * `patches`: Details about the different patches the library needs for several reasons.
+ * `patches`: Details about the any patches the may library need, see the [Patching Policy](sources_and_patches.md#policy-about-patching) for the criteria.
 
 <!-- toc -->
 ## Contents
@@ -43,6 +43,8 @@ In the context of conan-center-index, this file is mandatory and consists of two
 
 This is the entry that contains all the items that are downloaded from the internet and used in a recipe. This section contains one entry per version and each version should declare its own sources.
 
+> **Note**: For deciding which source to pick, see [Picking Sources](sources_and_patches.md#picking-the-sources) guide.
+
 This is a basic example of a regular library, it should satisfy most of the use cases:
 
 ```yml
@@ -58,6 +60,7 @@ sources:
 Every entry for a version consists in a dictionary with the `url` and the hashing algorithm of the artifact. `sha256` is required, but others like `sha1` or `md5` can be used as well.
 
 ### Mirrors
+
 Sometimes it is useful to declare mirrors, use a list in the `url` field. Conan will try to download the artifacts from any of those mirrors.
 
 ```yml
@@ -101,7 +104,7 @@ There are other ways to specify sources to cover other cases.
 
 Certain projects provide license on their own, and released artifacts do not include it. In this case, a license URL can be provided separately:
 
-```
+```yml
 sources:
   8.0.0:
     - url: https://github.com/approvals/ApprovalTests.cpp/releases/download/v.8.0.0/ApprovalTests.v.8.0.0.hpp
@@ -114,7 +117,7 @@ sources:
 
 Some projects may include multiple tarballs as a part of release, [OpenCV](https://opencv.org/) is an example which includes auxiliary [contrib](https://github.com/opencv/opencv_contrib) archive:
 
-```
+```yml
 sources:
   "4.5.0":
     - sha256: dde4bf8d6639a5d3fe34d5515eab4a15669ded609a1d622350c7ff20dace1907
@@ -127,7 +130,7 @@ sources:
 
 This is the most advanced and sophisticated use-case, but no so common. Some projects may provide different sources for different platforms for awkward reasons, it could be expressed as:
 
-```
+```yml
 sources:
   "0066":
     "Macos":
@@ -146,9 +149,10 @@ This approach requires a special code within [build](https://docs.conan.io/en/la
 
 Sometimes sources provided by project require patching for various reasons. The `conandata.yml` file is the right place to indicate this information as well.
 
-> :information_source: Under our mission to ensure quality, patches undergo extra scrutiny. **Make sure to review** our [Modifying sources policy](policy_patching.md)
+> **Note**: Under our mission to ensure quality, patches undergo extra scrutiny. **Make sure to review** our
+> [Patching Policy](ources_and_patches.md#policy-about-patching) to understand the requirements before adding any.
 
-This section follows the same pattern as the `sources` above: one entry per version with a list of patches to apply.
+This section follows the same pattern as the `sources` above - one entry per version with a list of patches to apply.
 
 ```yaml
 patches:
