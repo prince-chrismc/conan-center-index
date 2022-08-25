@@ -1,7 +1,7 @@
-# Adding Packages to ConanCenter
+# Folder and Files Structure
 
-First thing is know what library you want to add. Conan packages are always lowercase.
-Take note of the license and URL for the project, to fill in the `conanfile.py` attributes later.
+ConanCenter has a specific structure for it's recipes, this allows the [buils service](../README.md#the-build-service) to work most
+efficiently.
 
 <!-- toc -->
 ## Contents
@@ -60,25 +60,30 @@ same structure.
 
 ### `config.yml`
 
-This file lists the versions that should be built along with the folders where they are located - this should be `all`.
+This file lists the versions that should be built along with the corresponding [recipe folder](#the-_recipe-folder_) that will be used to package the project.
+
+> **Note**: It's strongly preferred to only have one one recipe - this should be `all`.
 
 ```yml
 versions:
+  "2.0.0":
+    folder: all
   "2.1.0":
     folder: all
 ```
+
+This simply files has the following format:
 
 - `versions` is a top level dictionary, containing a list of known versions.
 - `folder` is a string entry providing the name of the folder, relative to the current directory where the `conanfile.py` that
 can package that given folder.
 
-It's strongly preferred to only have one one recipe, however if it's no possible to maintain one recipe for all version, older version maybe moved to a
-separate folder.
+If it's no possible to maintain one recipe for all version, older version maybe moved to a separate folder.
 
 ```yml
 versions:
   "1.1.1":
-    folder: 1.x.x
+    folder: 1.x.x # Older version with different build system and options not compatible with newer version
   "2.0.0":
     folder: all
   "2.1.0":
@@ -133,11 +138,20 @@ Each recipe should derive the `ConanFile` class and implement key attributes and
 - Basic attributes and conversions can be found in [recipe attributes](recipe_attributes.md)
 - Some of the key methods are outline in this document and will link to more details
 
+```python
+from conan import ConanFile
+
+class FmtConan(ConanFile):
+    name = "fmt"
+    homepage = "https://github.com/fmtlib/fmt"
+    # ...
+```
+
 When a package needs other packages those are can be include with the `requirements()` methods.
 
 ```python
-def requirements(self):
-    self.require("fmt/9.0.0")
+    def requirements(self):
+        self.require("fmt/9.0.0")
 ```
 
 For more information see the [Dependencies and Requirements](dependencies_and_requirements.md) documentation for more use cases.
