@@ -6,9 +6,10 @@ or are known by ConanCenter's build service and have special meaning.
 <!-- toc -->
 ## Contents
 
-  * [Name attribute](#name-attribute)
-  * [Version attribute](#version-attribute)
-  * [License Attribute](#license-attribute)
+  * [Attributes](#attributes)
+    * [Name](#name)
+    * [Version](#version)
+    * [License](#license)
   * [Settings](#settings)
   * [Options](#options)
     * [Recommended Names](#recommended-names)
