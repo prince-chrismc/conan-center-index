@@ -12,7 +12,7 @@ The documents in this folder are written with a flow; however feel free to hope 
 1. [Folders and Files](folders_and_files.md)
 2. [Sources and Patches](sources_and_patches.md)
    1. [`conandata.yml` format](conandata_yml_format.md)
-3. [Recipe Attributes](recipe_attributes.md)
+3. [`ConanFile` Attributes](recipe_attributes.md)
 4. [Requirements](dependencies_and_requirements.md)
 5. [Build and Package](build_and_package.md)
    1. [Revist Patches](sources_and_patches.md#policy-about-patching)
