@@ -15,7 +15,15 @@ or are known by ConanCenter's build service and have special meaning.
     * [Known Options](#known-options)
     * [Disallowed Options](#disallowed-options)<!-- endToc -->
 
-## Name attribute
+## Attributes
+
+There's are a [key features](https://docs.conan.io/en/latest/reference/conanfile/attributes.html) which allow the Conan client to understand,
+identify, and expose reipces and which project they expose.
+
+In ConanCenter, there are a few conventions that need to be respected to ensure recipes can be discovered there `conan search` command
+of through the web UI. Many of which are enforces with the [hooks](../error_knowledge_base.md).
+
+### Name
 
 Same as the _recipe folder_ and always lowercase.
 
@@ -24,12 +32,12 @@ Please see the FAQs for:
 - [name collisions](../faqs.md#what-is-the-policy-on-recipe-name-collisions)
 - [space and symbols](../faqs.md#should-reference-names-use---or-_)
 
-## Version attribute
+### Version
 
 ConanCenter is geared towards quickly added new release, the build service always pass the version it it currently building to the recipe.
 The `version` attribute MUST NOT be added to any recipe - with except to "system packages".
 
-## License Attribute
+### License
 
 The mandatory license attribute of each recipe **should** be a [SPDX license](https://spdx.org/licenses/) [short Identifiers](https://spdx.dev/ids/) when applicable.
 
