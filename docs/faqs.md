@@ -23,8 +23,6 @@ This section gathers the most common questions from the community related to pac
   * [What license should I use for Public Domain?](#what-license-should-i-use-for-public-domain)
   * [What license should I use for a custom project specific license?](#what-license-should-i-use-for-a-custom-project-specific-license)
   * [Why is a `tools.check_min_cppstd` call not enough?](#why-is-a-toolscheck_min_cppstd-call-not-enough)
-  * [What is the policy for adding older versions of a package?](#what-is-the-policy-for-adding-older-versions-of-a-package)
-  * [What is the policy for removing older versions of a package?](#what-is-the-policy-for-removing-older-versions-of-a-package)
   * [Can I install packages from the system package manager?](#can-i-install-packages-from-the-system-package-manager)
   * [Why ConanCenter does not build and execute tests in recipes](#why-conancenter-does-not-build-and-execute-tests-in-recipes)
   * [Why not add an option to build unit tests](#why-not-add-an-option-to-build-unit-tests)
@@ -47,9 +45,9 @@ For example, `GSL` is the name of `Guidelines Support Library` from Microsoft an
 
 ## What is the policy on creating packages from pre-compiled binaries?
 
-The policy is that in the general case [recipes should build packages from sources](packaging_policy.md), because of reproducibility and security concerns. The implication is that the sources must be publicly available, and in a format that can be consumed programmatically.
+The policy is that in the general case [recipes should build packages from sources](adding_packages/sources_and_patches.md#picking-the-sources), because of reproducibility and security concerns. The implication is that the sources must be publicly available, and in a format that can be consumed programmatically.
 
-Check the link for further details.
+See [Picking Sources](adding_packages/sources_and_patches.md#picking-the-sources) for more information.
 
 ## Should reference names use `-` or `_`?
 
@@ -175,7 +173,7 @@ No. Some projects provide more than a simple library, but also applications. For
 ## What license should I use for a custom project specific license?
 
 When a non standard open-source license is used, we have decided to use `LicenseRef-` as a prefix, followed by the name of the file which contains a custom license.
-See [the reviewing guidlines](reviewing.md#license-attribute) for more details.
+See the [`ConanFile` Attributes guidelines](adding_packages/conanfile_attributes.md#license) for more details.
 
 ## Why is a `build.check_min_cppstd` call not enough?
 
@@ -201,19 +199,6 @@ def validate(self):
 
 As a result, all calls to `build.check_min_cppstd` must be guarded by a check for the setting and the only way to ensure the C++ standard is to check the compiler's version to know if it offers sufficient support. An example of this can be found [here](https://github.com/conan-io/conan/issues/8002).
 
-## What is the policy for adding older versions of a package?
-
-We defer adding older versions without a direct requirement. We love to hear why in the opening description of the PR.
-Adding versions that are not used by consumer only requires more resources and time from the CI servers.
-
-## What is the policy for removing older versions of a package?
-
-Older versions can be removed from packages given the considerations below. When removing those version, remove everything
-that is specific to them: logic from the recipe and references in `config.yml` and `conandata.yml`. In any case, packages
-are never removed from ConanCenter remote.
-
-When removing older versions, please take into account [these considerations](reviewing.md#supported-versions).
-
 ## Can I install packages from the system package manager?
 
 It depends. You can not mix both regular projects with system packages, but you can provide package wrappers for system packages. However, Conan can not track system packages, like their version and options, which creates a fragile situation where affects libraries and binaries built in your package but can not be totally reproduced.
@@ -223,7 +208,7 @@ The hook [KB-H032](error_knowledge_base.md#KB-H032) does not allow `system_requi
 system packages at same recipe.
 
 There are exceptions where some projects are closer to system drivers or hardware and packaging as a regular library could result
-in an incompatible Conan package. To deal with those cases, you are allowed to provide an exclusive Conan package which only installs system packages, see the [How-to](how_to_add_packages.md#system-packages) for more.
+in an incompatible Conan package. To deal with those cases, you are allowed to provide an exclusive Conan package which only installs system packages, see the [How-to](adding_packages/build_and_package.md#system-packages) for more.
 
 ## Why ConanCenter does **not** build and execute tests in recipes
 
@@ -236,8 +221,7 @@ There are different motivations
 ## Why not add an option to build unit tests
 
 - Adding a testing option will change the package ID, but will not provide different packaged binaries
-- Use the configuration [skip_test](packaging_policy.md#options) to define the testing behavior.
-
+- Use the configuration [skip_test](adding_packages/conanfile_attributes.md#disallowed-options) to define the testing behavior.
 
 ## What is the policy for supported python versions?
 
