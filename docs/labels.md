@@ -12,7 +12,11 @@ special meaning:
   * [Infrastructure](#infrastructure)
   * [Stale](#stale)
   * [Unexpected Error](#unexpected-error)
-  * [User-approval pending](#user-approval-pending)<!-- endToc -->
+  * [User-approval pending](#user-approval-pending)
+  * [Library Request](#library-request)
+  * [Question](#question)
+  * [Upstream Update](#upstream-update)
+  * [conan.io/center](#conaniocenter)<!-- endToc -->
 
 ## Bump dependencies
 

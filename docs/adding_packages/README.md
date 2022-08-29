@@ -12,8 +12,8 @@ You can follow the three steps (:one: :two: :three:) described below! :tada:
 
   * [Request access](#request-access)
   * [Creating a package](#creating-a-package)
+    * [How to provide a good recipe](#how-to-provide-a-good-recipe)
   * [Submitting a Package](#submitting-a-package)
-  * [How to provide a good recipe](#how-to-provide-a-good-recipe)
   * [The Build Service](#the-build-service)<!-- endToc -->
 
 ## Request access
