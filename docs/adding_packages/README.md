@@ -4,19 +4,8 @@ ConanCenter aims to provide the best quality packages for any open source projec
 Any C/C++ project can be made available by contributing a "recipe".
 
 Getting started is easy. Try building an existing package with our [developing recipes](developing_recipes_locally.md) tutorial.
-To deepen you understanding, start with the [Folders and Files](folders_and_files.md) guide.
+To deepen you understanding, start with the [How to provide a good recipe](#how-to-provide-a-good-recipe) section.
 You can follow the three steps (:one: :two: :three:) described below! :tada:
-
-The documents in this folder are written with a flow; however feel free to hope around as you work!
-
-1. [Folders and Files](folders_and_files.md)
-2. [Sources and Patches](sources_and_patches.md)
-   1. [`conandata.yml` format](conandata_yml_format.md)
-3. [`ConanFile` Attributes](conanfile_attributes.md)
-4. [Requirements](dependencies_and_requirements.md)
-5. [Build and Package](build_and_package.md)
-   1. [Revisit Patches](sources_and_patches.md#policy-about-patching)
-6. [Test Package](test_packages.md)
 
 <!-- toc -->
 ## Contents
@@ -42,7 +31,10 @@ on a weekly basis.
 
 ## Creating a package
 
-:two: The easiest way is to copy an existing recipe that was recently updated. Pick one, [from the list below](#how-to-provide-a-good-recipe),
+Once you've successfully built an existing recipe following [developing recipes](developing_recipes_locally.md) tutorial.
+You are set to being.
+
+:two: The easiest way is to copy an [example package](https://github.com/conan-io/conan-center-index/pull/12678)
 that uses the same build system to keep things easy.
 
 Quickly, there's a few items to look at:
@@ -56,13 +48,42 @@ In ConanCenter, our belief is recipes should always match upstream, in other wor
 * Options should [follow the recommendations](conanfile_attributes.md#options) as well as match the default of upstream.
 * [Package information](build_and_package.md), libraries, components should match as well. This includes exposing supported build system names.
 
-Where dependencies are involved, there's no shortcuts, inspect the upstream's build scripts for how they usually consume them. Pick the Conan generator that matches.
-The most common example is CMake's `find_package` can be satisfied by Conan's `CMakeDeps` generator. There are a few things to be cautious about, many projects
-like to "vendor" other projects within them. This can be files checked into the repository or downloaded during the build process.
+Where dependencies are involved, there's no shortcuts, inspect the upstream's build scripts for how they usually consume them. Pick the Conan
+generator that matches. The most common example is CMake's `find_package` can be satisfied by Conan's `CMakeDeps` generator. There are a few
+things to be cautious about, many projects like to "vendor" other projects within them. This can be files checked into the repository or
+downloaded during the build process.
+
+### How to provide a good recipe
+
+Take a look at existing [recipes](https://github.com/conan-io/conan-center-index/tree/master/recipes) available in CCI can be used as good examples,
+you can use them as the base for your recipe. The GitHub search is very good for matching code snippets, you can see if, how or when a function
+is used in other recipes.
+
+> **Note**: Conan features change over time and our best practices evolve so some minor details may be out of date due to the vast number of recipes.
+
+More often then not, ConanCenter recipes are built in more configuration then the upstream project - this means some edge cases need minor tweaks.
+We **strongly encourage** everyone to contribute back to the upstream project. This reduce the burden of reapplying patches and overall makes the
+the code more accessible.
+
+Read the docs! The [FAQs](../faqs.md) are a great place to find short answers.
+The documents in this folder are written to explain each folder, file, method and attribute with specific conventions
+
+1. [Folders and Files](folders_and_files.md)
+2. [Sources and Patches](sources_and_patches.md)
+   1. [`conandata.yml` format](conandata_yml_format.md)
+3. [`ConanFile` Attributes](conanfile_attributes.md)
+4. [Requirements](dependencies_and_requirements.md)
+5. [Build and Package](build_and_package.md)
+   1. [Revisit Patches](sources_and_patches.md#policy-about-patching)
+6. [Test Package](test_packages.md)
+
+The one place you are certain to find a lot of information is <https://docs.conan.io>, this has the documentation for everything in Conan.
+There are helpful tutorials for cross-build, detailed explication for profiles and settings and much much more!
 
 ## Submitting a Package
 
-:three: To contribute a package, you can submit a [Pull Request](https://github.com/conan-io/conan-center-index/pulls) to this GitHub repository <https://github.com/conan-io/conan-center-index>.
+:three: To contribute a package, you can submit a [Pull Request](https://github.com/conan-io/conan-center-index/pulls) to this GitHub
+repository <https://github.com/conan-io/conan-center-index>.
 
 The specific steps to submitting changes are:
 
@@ -73,14 +94,6 @@ The specific steps to submitting changes are:
 * Our automated [build service](#the-build-service) will build 100+ different configurations, and provide messages that indicate if there were any issues found during the pull request on GitHub.
 
 When the pull request is [reviewed and merged](../review_process.md), those packages are published to [JFrog's ConanCenter](https://conan.io/center/) and available for everyone.
-
-## How to provide a good recipe
-
-The [recipes](https://github.com/conan-io/conan-center-index/tree/master/recipes) available in CCI can be used as good examples, you can use them as the base for your recipe. However it is important to note Conan features change over time and our best practices evolve so some minor details may be out of date due to the vast number of recipes.
-
-Here's a short list of good examples
-
-* TODO!
 
 ## The Build Service
 
