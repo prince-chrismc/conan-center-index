@@ -50,10 +50,5 @@ For any suggestion, feature request or question open an issue indicating the fol
 - Try to explain the motivation, what are you trying to do, what is the pain it tries to solve.
 - What do you expect from CCI.
 
-We use the following tags to control the status of the issues:
-
-- **infrastructure**: Waiting on tools or services belonging to the infra.
-- **library request**: Request a new package to be created.
-- **question**: Further information is requested .
-- **upstream update**: Bump a new package version.
-- **conan.io/center**: Issues and features related to Web UI .
+We use the following tags to control the status of the issues and pull requests, you can learn more in [Labels](docs/labels.md) document
+which details the important one and their roles.

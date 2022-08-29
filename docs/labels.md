@@ -59,3 +59,20 @@ time the CI runs, don't hesitate to trigger a new build in this situation.
 Label [`User-approval pending`](https://github.com/conan-io/conan-center-index/pulls?q=is%3Aopen+is%3Apr+label%3A%22User-approval+pending%22)
 signals the pull request that have been submitted by an user who is not yet approved in ConanCenter. Once the user is
 approved these pull requests will be triggered again automatically.
+
+## Library Request
+
+Request a new package to be created.
+
+## Question
+
+Further information is requested. Usually these are for issue where help is needed to solve a specific issue. These are a great way
+to look for advice or recommendation about making changes to recipes.
+
+## Upstream Update
+
+Rquest a bump of a new package version.
+
+## conan.io/center
+
+Issues and features related to Web UI.
