@@ -87,10 +87,10 @@ There are helpful tutorials for cross-build, detailed explication for profiles a
 
 ## Submitting a Package
 
-:three: To contribute a package, you can submit a [Pull Request](https://github.com/conan-io/conan-center-index/pulls) to this GitHub
+To contribute a package, you can submit a [Pull Request](https://github.com/conan-io/conan-center-index/pulls) to this GitHub
 repository <https://github.com/conan-io/conan-center-index>.
 
-The specific steps to submitting changes are:
+:three: The specific steps to submitting changes are:
 
 * Build and test the new recipe in several combinations. Check [developing recipes](../developing_recipes_locally.md) for tips.
 * [Commit and push to your fork repository](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository) then
