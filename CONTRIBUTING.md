@@ -18,17 +18,19 @@ Conan Center Index is developed by the Conan maintainers and a great community o
 
 CCI follows the ["GitFlow"](https://datasift.github.io/gitflow/IntroducingGitFlow.html) branching model.
 Issues are triaged and categorized mainly by type (package request, bug...) and priority (high, medium...) using GitHub
- labels.
+labels.
 
 To contribute follow the next steps:
 
 1. Comment in the corresponding issue that you want to contribute the package/fix proposed. If there is no open issue, we strongly suggest
    opening one to gather feedback.
-2. Get setup by following [Developing Recipes](docs/developing_recipes_locally.md) guide.
-3. Check the [how_to_add_packages.md](docs/adding_packages/README.md) if for details about working locally and best practices.
+2. Get setup by following [Developing Recipes](docs/developing_recipes_locally.md) guide and learn the basic commands.
+3. Check the [how_to_add_packages](docs/adding_packages/README.md) for the break on ConanCenter specific convetions and practices.
 4. In your fork create a `package/xxx` branch from the `master` branch and develop
    your fix/packages as discussed in previous step.
-5. Add the text (besides other comments): "fixes #IssueNumber" in the body of the PR, referring to the issue of step 1.
+5. [Submit a pull request](docs/adding_packages/README.md#submitting-a-package) once you are ready. This can be when you
+   got everything working or even if you need help. Add the text (besides other comments): "fixes #IssueNumber"
+   in the body of the PR, referring to the issue of step 1.
 
 The Conan Community works hard to review all the pull requests and provided assistance where need.
 The [Review Process](docs/review_process.md) is partial automated with the help of @conan-center-index-bot :rocket:
