@@ -3,7 +3,7 @@
 ConanCenter aims to provide the best quality packages for any open source project.
 Any C/C++ project can be made available by contributing a "recipe".
 
-Getting started is easy. Try building an existing package with our [developing recipes](developing_recipes_locally.md) tutorial.
+Getting started is easy. Try building an existing package with our [developing recipes](../developing_recipes_locally.md) tutorial.
 To deepen you understanding, start with the [How to provide a good recipe](#how-to-provide-a-good-recipe) section.
 You can follow the three steps (:one: :two: :three:) described below! :tada:
 
@@ -31,8 +31,13 @@ on a weekly basis.
 
 ## Creating a package
 
-Once you've successfully built an existing recipe following [developing recipes](developing_recipes_locally.md) tutorial.
+Once you've successfully built an existing recipe following [developing recipes](../developing_recipes_locally.md) tutorial.
 You are set to being.
+
+Make sure you have:
+
+* Fork and then clone the [conan-center-index](https://github.com/conan-io/conan-center-index/fork) git repository.
+* Make sure you are using the latest [Conan client](https://conan.io/downloads) version, as recipes might evolve introducing features of the newer Conan releases.
 
 :two: The easiest way is to copy an [example package](https://github.com/conan-io/conan-center-index/pull/12678)
 that uses the same build system to keep things easy.
@@ -87,11 +92,11 @@ repository <https://github.com/conan-io/conan-center-index>.
 
 The specific steps to submitting changes are:
 
-* Fork and then clone the [conan-center-index](https://github.com/conan-io/conan-center-index/fork) git repository.
-* Make sure you are using the latest [Conan client](https://conan.io/downloads) version, as recipes might evolve introducing features of the newer Conan releases.
-* Build and test the new recipe in several combinations. Check [developing recipes](developing_recipes_locally.md) for tips.
-* Commit and push to GitHub then submit a pull request.
-* Our automated [build service](#the-build-service) will build 100+ different configurations, and provide messages that indicate if there were any issues found during the pull request on GitHub.
+* Build and test the new recipe in several combinations. Check [developing recipes](../developing_recipes_locally.md) for tips.
+* [Commit and push to your fork repository](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository) then
+  [submit a pull request](https://github.com/conan-io/conan-center-index/compare).
+* Our automated [build service](#the-build-service) will build 100+ different configurations, and provide messages that indicate if there
+  were any issues found during the pull request on GitHub.
 
 When the pull request is [reviewed and merged](../review_process.md), those packages are published to [JFrog's ConanCenter](https://conan.io/center/) and available for everyone.
 
