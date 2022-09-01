@@ -3,6 +3,7 @@
 <!-- toc -->
 ## Contents
 
+  * [Recipe Structure](#recipe-structure)
   * [New cpp_info set_property model](#new-cpp_info-set_property-model)
     * [CMakeDeps](#cmakedeps)
     * [Update required_conan_version to ">=1.43.0"](#update-required_conan_version-to-1430)
@@ -25,6 +26,15 @@ changes and improvements, you can read about them in the
 
 This document is a practical guide, offering extended information particular to Conan
 Center Index recipes to get them ready to upgrade to Conan 2.0.
+
+## Recipe Structure
+
+Some notes:
+
+- old test_package is moved to v1
+- keep one .cpp
+
+See the [test package structure](adding_packages/test_packages.md) for more details.
 
 ## New cpp_info set_property model
 

@@ -23,15 +23,15 @@ Issues are triaged and categorized mainly by type (package request, bug...) and 
 To contribute follow the next steps:
 
 1. Comment in the corresponding issue that you want to contribute the package/fix proposed. If there is no open issue, we strongly suggest
-   to open one to gather feedback.
-2. Check the [how_to_add_packages.md](docs/how_to_add_packages.md) if are
-   contributing for a new package.
-3. Fork the [CCI repository](https://github.com/conan-io/conan-center-index) and create a `package/xxx` branch from the `master` branch and develop
+   opening one to gather feedback.
+2. Get setup by following [Developing Recipes](docs/adding_packages/developing_recipes_locally.md) guide.
+3. Check the [how_to_add_packages.md](docs/adding_packages/README.md) if for details about working locally and best practices.
+4. In your fork create a `package/xxx` branch from the `master` branch and develop
    your fix/packages as discussed in previous step.
-4. Try to keep your branch updated with the `master` branch to avoid conflicts.
-5. Add the text (besides other comments): "fixes #IssueNumber" in the body of the PR, referring to the issue of step 1.
+6. Add the text (besides other comments): "fixes #IssueNumber" in the body of the PR, referring to the issue of step 1.
 
-The ``conan-io`` organization maintainers will review and help with the packaging.
+The Conan Community works hard to review all the pull requests and provided assistance where need.
+The [Review Process](docs/review_process.md) is partial automated with the help of @conan-center-index-bot :rocket:
 
 ## Issues
 
@@ -50,10 +50,5 @@ For any suggestion, feature request or question open an issue indicating the fol
 - Try to explain the motivation, what are you trying to do, what is the pain it tries to solve.
 - What do you expect from CCI.
 
-We use the following tags to control the status of the issues:
-
-- **infrastructure**: Waiting on tools or services belonging to the infra.
-- **library request**: Request a new package to be created.
-- **question**: Further information is requested .
-- **upstream update**: Bump a new package version.
-- **conan.io/center**: Issues and features related to Web UI .
+We use the following tags to control the status of the issues and pull requests, you can learn more in [Labels](docs/labels.md) document
+which details the important one and their roles.
