@@ -23,7 +23,7 @@ This file is intended to provide all the commands you need to run in order to be
 ## Setup your environment
 
 1. Install a C++ development toolchain - ConanCenter's [build images](#testing-more-environments) are available
-2. Install the Conan client - make sure to keep it up to date!
+2. [Install the Conan client](https://docs.conan.io/en/latest/installation.html) - make sure to keep it up to date!
 3. Install CMake - this is the only tool which is assumed to be present
 
 ## Basic Commands
@@ -110,4 +110,60 @@ Example.
 ```
 docker run -v/Users/barbarian/.conan:/home/conan/.conan conanio/gcc8 bash -c "conan profile new --detect gcc8"
 docker run -v/Users/barbarian/.conan:/home/conan/.conan conanio/gcc8 bash -c "conan install -pr gcc8 fmt/9.0.0@ --build missing"
+```
+
+## Using Conan 2.0
+
+Everything you need to know about the methods, commands line, outputs can be found in the
+[Conan 2.0 Migrations](https://docs.conan.io/en/latest/conan_v2.html) docs. This should be fairly straight forward.
+Conan 2.0 by default has a different `CONANN_USER_HOME` location. You can have to separate caches, profiles
+and settings. So no need to worry about breaking your v1 setup.
+
+> **Note**: There are pretty heavy changes to the CLI so very few of the commands will have survived.
+> [Unified Command Pattern](https://docs.conan.io/en/latest/migrating_to_2.0/commands.html#unified-patterns-in-command-arguments)
+> for example changes how settings and options are passed.
+
+
+Simply install Conan with `pip install conan --upgrade --pre`
+
+You can confirm the installation with
+
+```sh
+$ conan --version
+Conan version 2.0.0-beta2
+$ conan config home
+Current Conan home: /Users/barbarian/.conan2
+```
+
+> **Note**: You will most likely see
+> ```
+  Initialized file: '/Users/christopherm/.conan2/settings.yml'
+  Initialized file: '/Users/christopherm/.conan2/extensions/plugins/compatibility/compatibility.py'
+  Initialized file: '/Users/christopherm/.conan2/extensions/plugins/compatibility/app_compat.py'
+  Initialized file: '/Users/christopherm/.conan2/extensions/plugins/compatibility/cppstd_compat.py'
+  Initialized file: '/Users/christopherm/.conan2/extensions/plugins/profile.py'
+  ```
+> When running the client for the first time.
+
+You will need to setup profiles
+
+```sh
+conan profile detect
+```
+
+> **Warning**: This is a best guess, you need to make sure it's correct.
+
+There is a remote for the 2.0 migration binaries which can be added
+
+```
+conan remote add conanv2 https://conanv2beta.jfrog.io/artifactory/api/conan/conan --index 0
+```
+
+Trying build an existing recipe
+
+```sh
+cd recipes/fmt
+conan create all/conanfile.py --version 9.0.0
+conan create all/conanfile.py --version 9.0.0 -o fmt/9.0.0:header_only=True
+conan create all/conanfile.py --version 9.0.0 -s build_type=Debug -o fmt/9.0.0:shared=True
 ```
