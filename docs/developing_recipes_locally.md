@@ -25,6 +25,7 @@ This file is intended to provide all the commands you need to run in order to be
 1. Install a C++ development toolchain - ConanCenter's [build images](#testing-more-environments) are available
 2. [Install the Conan client](https://docs.conan.io/en/latest/installation.html) - make sure to keep it up to date!
 3. Install CMake - this is the only tool which is assumed to be present
+   [see FAQ](..faqs.md#why-recipes-that-use-build-tools-like-cmake-that-have-packages-in-conan-center-do-not-use-it-as-a-build-require-by-default)
 
 ### Installing the ConanCenter Hooks
 
