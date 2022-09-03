@@ -9,11 +9,15 @@ This file is intended to provide all the commands you need to run in order to be
 
   * [Clone your fork](#clone-your-fork)
   * [Setup your environment](#setup-your-environment)
+    * [Installing the ConanCenter Hooks](#installing-the-conancenter-hooks)
+      * [Updating conan hooks on your machine](#updating-conan-hooks-on-your-machine)
   * [Basic Commands](#basic-commands)
-  * [Installing the ConanCenter Hooks](#installing-the-conancenter-hooks)
-    * [Updating conan hooks on your machine](#updating-conan-hooks-on-your-machine)
-  * [Debugging failed builds](#debugging-failed-builds)
-  * [Testing more environments](#testing-more-environments)<!-- endToc -->
+    * [Try it yourself](#try-it-yourself)
+  * [Debugging Failed Builds](#debugging-failed-builds)
+  * [Running the Python Linters](#running-the-python-linters)
+  * [Testing the different `test__package`](#testing-the-different-test__package)
+  * [Testing more environments](#testing-more-environments)
+  * [Using Conan 2.0](#using-conan-20)<!-- endToc -->
 
 ## Clone your fork
 
