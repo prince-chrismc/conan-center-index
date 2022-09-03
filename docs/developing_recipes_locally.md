@@ -53,15 +53,16 @@ conan config install
 
 ## Basic Commands
 
-We recommend working from the `recipes/project` folder itself, this is because you can only change one recipe per pull request, and will help prevent making most mistakes.
+We recommend working from the `recipes/project` folder itself, this is because you can only change one recipe per pull request, and will help prevent making most mistakes. The [entire workflow of a recipe](https://docs.conan.io/en/latest/developing_packages/package_dev_flow.html) can be execute with the [`conan create`](https://docs.conan.io/en/latest/reference/commands/creator/create.html). This should look like:
 
-1. `conan create all/conanfile.py 0.0.0@`
+* `conan create all/conanfile.py 0.0.0@`
 
-ConanCenter also tests a few support settings/options, so `conan create all/conanfile.py 0.0.0@ -o project:shared=True -s build_type=Debug` is a easy way to more sure the package is correct.
+ConanCenter also has a few [support settings/options](supported_platforms_and_configurations.md) which highly recommend to test. For example
+`conan create all/conanfile.py 0.0.0@ -o project:shared=True -s build_type=Debug` is a easy way to more sure the package is correct.
 
 ### Try it yourself
 
-For instance you can create packages for `fmt` in various configurations by running:
+For instance you can create packages for `fmt` in various supported configurations by running:
 
 ```sh
 cd recipes/fmt
@@ -80,7 +81,7 @@ Instructions for using these images can be found in [Testing more environments](
 
 ## Running the Python Linters
 
-There are several variation of python linters, which were introduced to help with Conan 2.0 migration, these product comments on pull requests.
+There are several variation of python linters, which were introduced to help with Conan 2.0 migration, these produce comments on pull requests.
 
 You can test your code before hand by running:
 
