@@ -26,24 +26,7 @@ This file is intended to provide all the commands you need to run in order to be
 2. [Install the Conan client](https://docs.conan.io/en/latest/installation.html) - make sure to keep it up to date!
 3. Install CMake - this is the only tool which is assumed to be present
 
-## Basic Commands
-
-We recommend working from the `recipes/project` folder itself, this is because you can only change one recipe per pull request, and will help prevent making most mistakes.
-
-1. `conan create all/conanfile.py 0.0.0@`
-
-ConanCenter also tests a few support settings/options, so `conan create all/conanfile.py 0.0.0@ -o project:shared=True -s build_type=Debug` is a easy way to more sure the package is correct.
-
-Try it yourself, for instance:
-
-```sh
-cd recipes/fmt
-conan create all/conanfile.py fmt/9.0.0@
-conan create all/conanfile.py fmt/9.0.0@ -o fmt:header_only=True
-conan create all/conanfile.py fmt/9.0.0@ -s build_type=Debug -o fmt:shared=True
-```
-
-## Installing the ConanCenter Hooks
+### Installing the ConanCenter Hooks
 
 The system will use the [conan-center hook](https://github.com/conan-io/hooks) to perform some quality checks. You can install the hook running:
 
@@ -60,7 +43,7 @@ All hook checks will print a similar message:
 [HOOK - conan-center.py] post_package(): ERROR: [PACKAGE LICENSE] No package licenses found
 ```
 
-### Updating conan hooks on your machine
+#### Updating conan hooks on your machine
 
 The hooks are updated from time to time, so it's worth keeping your own copy of the hooks updated regularly. To do this:
 
@@ -68,12 +51,32 @@ The hooks are updated from time to time, so it's worth keeping your own copy of 
 conan config install
 ```
 
-## Debugging failed builds
+## Basic Commands
 
-Go to the [Error Knowledge Base](error_knowledge_base.md) page to know more about Conan Center hook errors.
+We recommend working from the `recipes/project` folder itself, this is because you can only change one recipe per pull request, and will help prevent making most mistakes.
+
+1. `conan create all/conanfile.py 0.0.0@`
+
+ConanCenter also tests a few support settings/options, so `conan create all/conanfile.py 0.0.0@ -o project:shared=True -s build_type=Debug` is a easy way to more sure the package is correct.
+
+### Try it yourself
+
+For instance you can create packages for `fmt` in various configurations by running:
+
+```sh
+cd recipes/fmt
+conan create all/conanfile.py fmt/9.0.0@
+conan create all/conanfile.py fmt/9.0.0@ -o fmt:header_only=True
+conan create all/conanfile.py fmt/9.0.0@ -s build_type=Debug -o fmt:shared=True
+```
+
+## Debugging Failed Builds
+
 Some common errors related to Conan can be found on [troubleshooting](https://docs.conan.io/en/latest/faq/troubleshooting.html) section.
+For ConanCenter Hook errors, go to the [Error Knowledge Base](error_knowledge_base.md) page to know more about those.
 
 To test with the same environment, the [build images](supported_platforms_and_configurations.md#build-images) are available.
+Instructions for using these images can be found in [Testing more environments](#testing-more-environments)
 
 ## Running the Python Linters
 
