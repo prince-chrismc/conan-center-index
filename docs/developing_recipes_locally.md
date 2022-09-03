@@ -137,12 +137,12 @@ Current Conan home: /Users/barbarian/.conan2
 
 > **Note**: You will most likely see
 > ```
-  Initialized file: '/Users/christopherm/.conan2/settings.yml'
-  Initialized file: '/Users/christopherm/.conan2/extensions/plugins/compatibility/compatibility.py'
-  Initialized file: '/Users/christopherm/.conan2/extensions/plugins/compatibility/app_compat.py'
-  Initialized file: '/Users/christopherm/.conan2/extensions/plugins/compatibility/cppstd_compat.py'
-  Initialized file: '/Users/christopherm/.conan2/extensions/plugins/profile.py'
-  ```
+> Initialized file: '/Users/christopherm/.conan2/settings.yml'
+> Initialized file: '/Users/christopherm/.conan2/extensions/plugins/compatibility/compatibility.py'
+> Initialized file: '/Users/christopherm/.conan2/extensions/plugins/compatibility/app_compat.py'
+> Initialized file: '/Users/christopherm/.conan2/extensions/plugins/compatibility/cppstd_compat.py'
+> Initialized file: '/Users/christopherm/.conan2/extensions/plugins/profile.py'
+> ```
 > When running the client for the first time.
 
 You will need to setup profiles
