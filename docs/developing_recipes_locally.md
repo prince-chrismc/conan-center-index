@@ -88,7 +88,11 @@ pylint --rcfile=linter/pylintrc_recipe recipes/fmt/all/conanfile.py
 
 ## Testing the different `test_*_package`
 
-This can be done by running:
+This can be selected when calling `conan create` or sperately with `conan test`
+
+```sh
+conan create recipes/fmt/all/conanfile.py 9.0.0@ -tf test_v1_package/
+```
 
 ```sh
 conan test recipes/fmt/all/test_v1_package/conanfile.py fmt/9.0.0@
