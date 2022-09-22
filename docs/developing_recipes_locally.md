@@ -87,7 +87,6 @@ Instructions for using these images can be found in [Testing more environments](
 ## Running the Python Linters
 
 Linters are always executed by Github actions to validate parts of your recipe, for instance, if it uses migrated Conan tools imports.
-All executed linters are documented in [linters.md](linters.md).
 To understand how to run linters locally, read [V2 linter](v2_linter.md) documentation.
 
 It is possible to run the linter locally the same way it is being run [using Github actions](../.github/workflows/linter-conan-v2.yml):

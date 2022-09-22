@@ -44,12 +44,12 @@ The [Conan's documentation](https://docs.conan.io) is always a good place.
 
 ### Header Only
 
-If you are looking for header-only projects, you can take a look on [header-only template](package_templates/header_only).
+If you are looking for header-only projects, you can take a look on [header-only template](../package_templates/header_only).
 Also, Conan Docs has a section about [how to package header-only libraries](https://docs.conan.io/en/latest/howtos/header_only.html).
 
 ### CMake
 
-For C/C++ projects which use CMake for building, you can take a look on [cmake package template](package_templates/cmake_package).
+For C/C++ projects which use CMake for building, you can take a look on [cmake package template](../package_templates/cmake_package).
 
 Another common use case for CMake based projects, both header only and compiled, is _modeling components_ to match the `find_package` and export the correct targets from Conan's generators. A basic examples of this is [cpu_features](https://github.com/conan-io/conan-center-index/blob/master/recipes/cpu_features/all/conanfile.py), a moderate/intermediate example is [cpprestsdk](https://github.com/conan-io/conan-center-index/blob/master/recipes/cpprestsdk/all/conanfile.py), and a very complex example is [OpenCV](https://github.com/conan-io/conan-center-index/blob/master/recipes/opencv/4.x/conanfile.py).
 

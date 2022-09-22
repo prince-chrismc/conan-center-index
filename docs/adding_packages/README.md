@@ -39,7 +39,7 @@ Make sure you have:
 * Fork and then clone the [conan-center-index](https://github.com/conan-io/conan-center-index/fork) git repository.
 * Make sure you are using the latest [Conan client](https://conan.io/downloads) version, as recipes might evolve introducing features of the newer Conan releases.
 
-:two: The easiest way is to copy a template from [package_templates](package_templates) folder in the recipes/ folder and rename it to the project name (it should be lower-case). Read templates [documentation](package_templates/README.md) to find more information.
+:two: The easiest way is to copy a template from [package_templates](../package_templates) folder in the recipes/ folder and rename it to the project name (it should be lower-case). Read templates [documentation](../package_templates/README.md) to find more information.
 
 Quickly, there's a few items to look at:
 

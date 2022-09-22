@@ -131,7 +131,7 @@ We often receive new fixes and improvements to the recipes already available for
 
 ## Do static libraries tend to be compiled as PIC by default?
 
-Yes! You can learn more about default options in [Packing Policy](packing_policy.md#options).
+Yes! You can learn more about default options in [Packing Policy](adding_packages/conanfile_attributes.md#predefined-options-and-known-defaults).
 
 ## Why PDB files are not allowed?
 
@@ -242,7 +242,7 @@ There are different motivations
 ## Why not add an option to build unit tests
 
 - Adding a testing option will change the package ID, but will not provide different packaged binaries
-- Use the configuration [skip_test](packaging_policy.md#options-to-avoid) to define the testing behavior.
+- Use the configuration [skip_test](adding_packages/conanfile_attributes.md#options-to-avoid) to define the testing behavior.
 
 ## What is the policy for supported python versions?
 
@@ -384,10 +384,12 @@ Conan will build from sources all the packages and use the shared libraries when
 
 The [Code Owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners) feature requires
 write permission for any listed user in the file `.github/CODEOWNERS`, which makes it impossible to be accepted by Conan. However, that file is still important as it can be re-used in
-a future Github Action to parse and communicate users. Meanwhile, there is the project https://app.github-file-watcher.com/, which is able to notify users, but only after
-merging to the master branch. Feel free to contribute to a new Github Action that implements a file watcher feature.
+a future Github Action to parse and communicate users. Meanwhile, there is the project https://app.github-file-watcher.com/,
+which is able to notify users, but only after merging to the master branch. Feel free to contribute to a new Github Action that
+implements a file watcher feature.
 
 ## Is it possible to disable Pylint?
 
-No. The [pylint](v2_linter.md) has an important role of keeping any recipe prepared for [Conan v2 migration](v2_migration.md). In case you are having
-difficult to understand [linter errors](linters.md), please, comment on your pull request about, then the community will help you.
+No. The [pylint](v2_linter.md) has an important role of keeping any recipe prepared for [Conan v2 migration](v2_migration.md).
+In case you are having difficult to understand [linter errors](v2_linters.md), please, comment on your pull request about,
+then the community will help you.
