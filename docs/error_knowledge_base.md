@@ -182,6 +182,8 @@ There is a complete explanation in the [FAQ](faqs.md#should-recipes-export-a-rec
 
 #### **<a name="KB-H024">#KB-H024</a>: "TEST PACKAGE FOLDER"**
 
+# FIXME: This link no longer exist and there is no dedicated section about test package in docs.
+
 The [test_package](https://docs.conan.io/en/latest/creating_packages/getting_started.html#the-test-package-folder) folder is required for every recipe in Conan Center Index.
 
 ```
@@ -226,7 +228,7 @@ class SomeRecipe(ConanFile):
 #### **<a name="KB-H027">#KB-H027</a>: "CONAN CENTER INDEX URL"**
 
 The attribute [url](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#url) should point to the address where the recipe is located.
-The current Conan Center Index address is https://github.com/conan-io/conan-center-index
+The current Conan Center Index address is <https://github.com/conan-io/conan-center-index>
 
 #### **<a name="KB-H028">#KB-H028</a>: "CMAKE MINIMUM VERSION"**
 
@@ -242,7 +244,7 @@ project(conanwrapper)
 
 #### **<a name="KB-H029">#KB-H029</a>: "TEST PACKAGE - RUN ENVIRONMENT"**
 
-The [RunEnvironment()](https://docs.conan.io/en/latest/reference/build_helpers/run_environment.html#runenvironment) build helper is no longer needed in the *test_package/conanfile.py*. It has been integrated by [run_environment](https://docs.conan.io/en/latest/devtools/running_packages.html#running-from-packages) parameter.
+The [RunEnvironment()](https://docs.conan.io/en/latest/reference/build_helpers/run_environment.html#runenvironment) build helper is no longer needed in the _test_package/conanfile.py_. It has been integrated by [run_environment](https://docs.conan.io/en/latest/devtools/running_packages.html#running-from-packages) parameter.
 
 ```python
 # test_package/conanfile.py
@@ -256,7 +258,7 @@ class TestConan(ConanFile):
 #### **<a name="KB-H030">#KB-H030</a>: "CONANDATA.YML FORMAT"**
 
 The structure of the [conandata.yml](https://docs.conan.io/en/latest/reference/config_files/conandata.yml.html) file should follow the schema
-defined in [Adding Packages - `Conandata.yml` Format](conandata_yml_format.md).
+defined in [Adding Packages - `Conandata.yml` Format](adding_packages/conandata_yml_format.md).
 
 #### **<a name="KB-H031">#KB-H031</a>: "CONANDATA.YML REDUCE"**
 
@@ -320,7 +322,9 @@ The attribue [default_options](https://docs.conan.io/en/latest/reference/conanfi
 
 #### **<a name="KB-H052">#KB-H052</a>: "CONFIG.YML HAS NEW VERSION"**
 
-It's important to have new library version defined in both [config.yml](how_to_add_packages.md#the-version-folders) and [conandata.yml](https://docs.conan.io/en/latest/reference/config_files/conandata.yml.html), otherwise newly added version will not be checked and built by CI and will not be available for download.
+It's important to have new library version defined in both [config.yml](adding_packages/folders_and_files.md#configyml) and
+[conandata.yml](adding_packages/folders_and_files.md#conandatayml), otherwise newly added version will not be checked and built
+by CI and will not be available for download.
 
 #### **<a name="KB-H053">#KB-H053</a>: "PRIVATE IMPORTS"**
 
@@ -391,7 +395,7 @@ class SomeRecipe(ConanFile):
 
 ```
 
-See also: [Submitting a Package](how_to_add_packages.md#submitting-a-package).
+See also: [Submitting a Package](adding_packages/README.md#submitting-a-package).
 
 #### **<a name="KB-H066">#KB-H066</a>: "SHORT_PATHS USAGE"**
 
@@ -447,7 +451,7 @@ class SomeRecipe(ConanFile):
 
 There is the case when the package is header-only, but the options affects the generated artifact, (e.g. kanguru, pagmo2 ...), so you need to use `self.info.settings.clear()` instead.
 
-- For "tool" recipes ([example](https://github.com/conan-io/conan-center-index/blob/e604534bbe0ef56bdb1f8513b83404eff02aebc8/recipes/cmake/3.x.x/conanfile.py#L104-L105)) which only provide binaries, see [our packing policy](packaging_policy.md#settings) for more, should do as follows:
+- For "tool" recipes ([example](https://github.com/conan-io/conan-center-index/blob/e604534bbe0ef56bdb1f8513b83404eff02aebc8/recipes/cmake/3.x.x/conanfile.py#L104-L105)) which only provide binaries, see [our packaging policy](adding_packages/build_and_package.md) for more, should do as follows:
 
     ```python
         def package_id(self):

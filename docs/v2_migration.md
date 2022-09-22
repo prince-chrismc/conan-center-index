@@ -7,6 +7,7 @@ Conan v2 in pull requests.
 <!-- toc -->
 ## Contents
 
+  * [Recipe Structure](#recipe-structure)
   * [Using Layout](#using-layout)
     * [With New Generators](#with-new-generators)
     * [With Multiple Build Helpers](#with-multiple-build-helpers)
@@ -29,6 +30,14 @@ changes and improvements, you can read about them in the
 This document is a practical guide, offering extended information particular to Conan
 Center Index recipes to get them ready to upgrade to Conan 2.0.
 
+## Recipe Structure
+
+Some notes:
+
+- old test_package is moved to v1
+- keep one .cpp
+
+See the [test package structure](adding_packages/test_packages.md) for more details.
 ## Using Layout
 
 All recipes should use a layout. Without one, more manual configuration of folders (e.g. source, build, etc)
