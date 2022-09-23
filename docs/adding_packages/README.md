@@ -16,9 +16,9 @@ You can follow the three steps (:one: :two: :three:) described below! :tada:
   * [Submitting a Package](#submitting-a-package)
   * [The Build Service](#the-build-service)<!-- endToc -->
 
-## Request access
+## :one: Request access
 
-:one: The first step to add packages to ConanCenter is requesting access. To enroll in ConanCenter repository, please write a comment
+The first step to add packages to ConanCenter is requesting access. To enroll in ConanCenter repository, please write a comment
 requesting access in this GitHub [issue](https://github.com/conan-io/conan-center-index/issues/4). Feel free to introduce yourself and
 your motivation to join ConanCenter community.
 
@@ -29,7 +29,7 @@ on a weekly basis.
 > All interactions are subject to the expectations of the [code of conduct](../code_of_conduct.md). Any misuse or inappropriate behavior are subject
 > to the same principals.
 
-## Creating a package
+## :two: Creating a package
 
 Once you've successfully built an existing recipe following [developing recipes](../developing_recipes_locally.md) tutorial.
 You are set to being.
@@ -39,7 +39,7 @@ Make sure you have:
 * Fork and then clone the [conan-center-index](https://github.com/conan-io/conan-center-index/fork) git repository.
 * Make sure you are using the latest [Conan client](https://conan.io/downloads) version, as recipes might evolve introducing features of the newer Conan releases.
 
-:two: The easiest way is to copy a template from [package_templates](../package_templates) folder in the recipes/ folder and rename it to the project name (it should be lower-case). Read templates [documentation](../package_templates/README.md) to find more information.
+The easiest way is to copy a template from [package_templates](../package_templates) folder in the recipes/ folder and rename it to the project name (it should be lower-case). Read templates [documentation](../package_templates/README.md) to find more information.
 
 Quickly, there's a few items to look at:
 
@@ -84,12 +84,12 @@ The documents in this folder are written to explain each folder, file, method an
 The one place you are certain to find a lot of information is <https://docs.conan.io>, this has the documentation for everything in Conan.
 There are helpful tutorials for cross-build, detailed explication for profiles and settings and much much more!
 
-## Submitting a Package
+## :three: Submitting a Package
 
 To contribute a package, you can submit a [Pull Request](https://github.com/conan-io/conan-center-index/pulls) to this GitHub
 repository <https://github.com/conan-io/conan-center-index>.
 
-:three: The specific steps to submitting changes are:
+The specific steps to submitting changes are:
 
 * Build and test the new recipe in several combinations. Check [developing recipes](../developing_recipes_locally.md) for tips.
 * [Commit and push to your fork repository](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository) then
