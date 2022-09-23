@@ -1,14 +1,18 @@
 # Test Packages
 
+the test packge is how ConanCenter is able to validate the contents of packages are valid. This involes installing, generating, compiling, and linking any artifacts.
+
+It's encourages to test multiple options and setting in the default `test_package/` since that is what's used by consumers building locally from source.
+
 <!-- toc -->
 ## Contents
 
-    * [Files and Structure](#files-and-structure)
-    * [CMake targets](#cmake-targets)
-      * [CMakeLists.txt](#cmakeliststxt)
-      * [V1 CMakeLists.txt](#v1-cmakeliststxt)
-      * [Testing more generators with `test_<something>`](#testing-more-generators-with-test_something)
-    * [Minimalist Source Code](#minimalist-source-code)<!-- endToc -->
+ * [Files and Structure](#files-and-structure)
+ * [CMake targets](#cmake-targets)
+   * [CMakeLists.txt](#cmakeliststxt)
+   * [V1 CMakeLists.txt](#v1-cmakeliststxt)
+   * [Testing more generators with `test_<something>`](#testing-more-generators-with-test_something)
+ * [Minimalist Source Code](#minimalist-source-code)<!-- endToc -->
 
 ### Files and Structure
 
