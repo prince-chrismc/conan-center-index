@@ -9,12 +9,13 @@ or are known by ConanCenter's build service and have special meaning.
   * [Attributes](#attributes)
     * [Name](#name)
     * [Version](#version)
+    * [ConanCenter specific releases format](#conancenter-specific-releases-format)
     * [License](#license)
   * [Settings](#settings)
   * [Options](#options)
     * [Recommended Names](#recommended-names)
-    * [Known Options](#known-options)
-    * [Disallowed Options](#disallowed-options)<!-- endToc -->
+    * [Predefined Options and Known Defaults](#predefined-options-and-known-defaults)
+    * [Options to Avoid](#options-to-avoid)<!-- endToc -->
 
 ## Attributes
 

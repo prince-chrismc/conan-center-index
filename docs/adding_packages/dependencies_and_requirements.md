@@ -4,10 +4,10 @@
 ## Contents
 
   * [Rules and Recommendations](#rules-and-recommendations)
-    * [Optional Requirements](#optional-requirements)
+  * [Optional Requirements](#optional-requirements)
     * [Requirements Options](#requirements-options)
-        * [Handling "internal" dependencies](#handling-internal-dependencies)
-    * [Verifying Dependency Version](#verifying-dependency-version)<!-- endToc -->
+    * [Handling "internal" dependencies](#handling-internal-dependencies)
+  * [Verifying Dependency Version](#verifying-dependency-version)<!-- endToc -->
 
 ## Rules and Recommendations
 

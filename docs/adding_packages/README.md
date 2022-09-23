@@ -10,10 +10,10 @@ You can follow the three steps (:one: :two: :three:) described below! :tada:
 <!-- toc -->
 ## Contents
 
-  * [Request access](#request-access)
-  * [Creating a package](#creating-a-package)
+  * [:one: Request access](#one-request-access)
+  * [:two: Creating a package](#two-creating-a-package)
     * [How to provide a good recipe](#how-to-provide-a-good-recipe)
-  * [Submitting a Package](#submitting-a-package)
+  * [:three: Submitting a Package](#three-submitting-a-package)
   * [The Build Service](#the-build-service)<!-- endToc -->
 
 ## :one: Request access
