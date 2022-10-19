@@ -81,7 +81,7 @@ class PackageConan(ConanFile):
 
     def requirements(self):
         # prefer self.requires method instead of requires attribute
-        self.requires("dependency/0.8.1")
+        self.requires("fmt/9.1.0")
 
     def validate(self):
         # validate the minimum cpp standard supported. For C++ projects only
@@ -100,7 +100,7 @@ class PackageConan(ConanFile):
 
     # if another tool than the compiler or CMake is required to build the project (pkgconf, bison, flex etc)
     def build_requirements(self):
-        self.tool_requires("tool/x.y.z")
+        self.tool_requires("cmake/3.24.0")
 
     def source(self):
         get(self, **self.conan_data["sources"][self.version], destination=self.source_folder, strip_root=True)
