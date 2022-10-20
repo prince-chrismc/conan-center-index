@@ -7,6 +7,7 @@ Conan v2 in pull requests.
 <!-- toc -->
 ## Contents
 
+  * [Recipe Structure](#recipe-structure)
   * [Using Layout](#using-layout)
     * [With New Generators](#with-new-generators)
     * [With Multiple Build Helpers](#with-multiple-build-helpers)
@@ -30,6 +31,10 @@ changes and improvements, you can read about them in the
 This document is a practical guide, offering extended information particular to Conan
 Center Index recipes to get them ready to upgrade to Conan 2.0.
 
+## Recipe Structure
+
+See the [test package structure](adding_packages/test_packages.md) for the current best practice.
+
 ## Using Layout
 
 All recipes should use a layout. Without one, more manual configuration of folders (e.g. source, build, etc)
@@ -38,7 +43,7 @@ and package structure will be required.
 ### With New Generators
 
 When doing this there is no need to manually define `self._subfolder_[...]` in a recipe.
-Simply use `self.source_folder` and `self.build_folder` instead of [subfolder properties](reviewing.md#subfolder-properties)
+Simply use `self.source_folder` and `self.build_folder` instead of "subfolder properties" that used to be the norm.
 
 ### With Multiple Build Helpers
 

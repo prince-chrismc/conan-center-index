@@ -4,6 +4,8 @@ Before you can contribute any code changes, you'll need to make sure you are fam
 
 This file is intended to provide all the commands you need to run in order to be an expert ConanCenter contributor.
 
+> **Warning**: Hooks are generally for package correctness and the pylinters are for the recipe syntax
+
 <!-- toc -->
 ## Contents
 
