@@ -33,6 +33,8 @@ working recipes and binaries for both versions.
 > considered as an estimation, there are still some unknowns to provide
 > certain steps and dates.
 
+## Overview
+
 Conan v2 is under heavy development and it will be released in the
 following months. It comes with many improvements that will benefit
 recipes and users, and we are willing to adopt it.
