@@ -55,6 +55,15 @@ When different build tools are use, at least one layout needs to be set.
 The `src_folder` must be the same when using different layouts and should
 not depend on settings or options.
 
+### Using the new `conan.tools.files` methods
+
+Some of the new methods take advantage of layouts and provide enhanced functionality. This often allows recipes to be leaner
+making them easier to read and maintain. However, since we are still aiming to support v1 (see [roadmap goals](v2_roadmap.md))
+this is not always the case since completely different APIs exist.
+
+- `conan.tools.files.get`: recipes do not need `destination=self.source_folder` however it's prefered to keep it.
+- `conan.tools.files.copy`: prefer naming the `src` and `dst` arguements and putting them in order `conanfile`, `pattern`, `src`, `dst` to avoid confusion.
+
 ## New conf_info properties
 
 As described in the documentation `self.user_info` has been depreated and you are now required to use
