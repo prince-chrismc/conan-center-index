@@ -1,5 +1,13 @@
 # Road to Conan v2
 
+**Our main goal in ConanCenter during this migration process is to ensure
+that recipes work with v1 and v2** and to make the transition as smooth as
+possible for contributors and users. In the end we will be providing
+working recipes and binaries for both versions.
+
+> **Note** This document is not a guide about how to migrate recipes to Conan v2,
+> please refer to the [v2_migration guide](v2_migration.md) for details about recipes.
+
 <!-- toc -->
 ## Contents
 
@@ -19,7 +27,6 @@
     * [Webpage with v2 information](#webpage-with-v2-information)
   * [Future](#future)<!-- endToc -->
 
-> **Note** This document is not a [guide about how to migrate recipes to Conan v2](v2_migration.md).
 
 > **Note** This is a working document that will be updated as we walk
 > this path. There are no dates intentionally, and if any they should be
@@ -36,11 +43,6 @@ be available and will be supersedes by improved alternatives. All these
 alternatives should be backported to v1.x releases, so **there will be a
 subset of features that will work using Conan v1 and v2**.
 
-**Our main goal in ConanCenter during this migration process is to ensure
-that recipes work with v1 and v2** and to make the transition as smooth as
-possible for contributors and users. In the end we will be providing
-working recipes and binaries for both versions.
-
 This process will require a lot of work also in the internals, we will keep
 communicating those changes and the relevant updates in the
 [changelog](changelog.md). Here there are the main steps that we are
@@ -48,7 +50,7 @@ planning for the following months.
 
 ## Short term
 
-### Prepare the CI infrastructure
+### Prepare the CI infrastructure ✔️
 
 Workers for Conan v2 will be ready for Windows, Macos and Linux alternatives.
 [Modern docker images](https://github.com/conan-io/conan-docker-tools/tree/master/modern) with Conan v2 are already
@@ -57,7 +59,7 @@ Note that we will be using tag name `2.0.0-pre` until there is an
 actual Conan v2 release, this tag will use the latest pre-release
 available (alpha, beta or release candidate).
 
-### Export recipes using Conan v2 (warning)
+### Export recipes using Conan v2 (warning) ✔️
 
 We will start to run `conan export` using Conan v2 and the result will be
 added to the comments by the bot. Failing this command won't make the
@@ -91,7 +93,7 @@ think about efforts and impact of next steps.
 
 ## Mid term
 
-### Add CI running Conan v2 (hidden)
+### Add CI running Conan v2 (hidden) ✔️
 
 We will start working on a CI running Conan v2. Once recipes start to be
 exported successfully, next step is to start building the packages.
