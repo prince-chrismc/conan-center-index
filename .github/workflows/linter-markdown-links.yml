@@ -1,4 +1,4 @@
-name: Check Markdown links
+name: "[linter] Check markdown links"
 
 on: [push,  pull_request]
 
