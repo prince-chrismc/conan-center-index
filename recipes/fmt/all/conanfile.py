@@ -17,7 +17,7 @@ class FmtConan(ConanFile):
     topics = ("format", "iostream", "printf")
     url = "https://github.com/conan-io/conan-center-index"
     license = "MIT"
-    settings = "os", "arch", "compiler", "build_type"
+    settings = { "os", "arch", "compiler", "build_type" }
     options = {
         "header_only": [True, False],
         "shared": [True, False],

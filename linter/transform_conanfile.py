@@ -38,6 +38,7 @@ def transform_conanfile(node):
 
     str_class = astroid.builtin_lookup("str")
     dict_class = astroid.builtin_lookup("dict")
+    # TODO(prince-chrismc): This is broken with Conan 2.0
     info_class = astroid.MANAGER.ast_from_module_name("conans.model.info").lookup(
         "ConanInfo")
     build_requires_class = astroid.MANAGER.ast_from_module_name(
@@ -64,7 +65,7 @@ def transform_conanfile(node):
         "settings_target": [_settings_transform()],
         "conf": dict_class,
     }
-    
+
     for f, t in dynamic_fields.items():
         node.locals[f] = [i for i in t]
 

@@ -18,10 +18,6 @@ disable=fixme,
         wrong-import-order,  # TODO: Remove
         import-outside-toplevel  # TODO: Remove
 
-enable=conan-bad-name,
-       conan-missing-name,
-       conan-import-conanfile
-
 [REPORTS]
 evaluation=max(0, 0 if fatal else 10.0 - ((float(5 * error) / statement) * 10))
 output-format=text

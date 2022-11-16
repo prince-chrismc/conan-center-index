@@ -10,7 +10,7 @@ class PackageUrl(BaseChecker):
 
     __implements__ = IAstroidChecker
 
-    name = "conan-package-name"
+    name = "conan-recipe-url"
     msgs = {
         "E9012": (
             "Recipe URL should be ",
