@@ -15,17 +15,17 @@ class RecipeAttributes(BaseChecker):
         "E9015": (
             "Missing license attribute",
             "conan-missing-license-attribute",
-            "The member attribute `license` must be declared: `license = '<spdx.com short-identifier>'`.",
+            "The member attribute [`license`](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#license) must be declared: `license = '<spdx.com short-identifier>'`.",
         ),
         "E9016": (
             "Missing homepage attribute",
             "conan-missing-homepage-attribute",
-            "The member attribute `homepage` must be declared: `homepage = 'https://<official site for the project>'`.",
+            "The member attribute [`homepage`](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#homepage) must be declared: `homepage = 'https://<official site for the project>'`.",
         ),
         "E9017": (
             "Missing description attribute",
             "conan-missing-description-attribute",
-            "The member attribute `description` must be declared: `description = 'something meaningful from the projects homepage'`.",
+            "The member attribute [`description`](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#description) must be declared: `description = 'something meaningful from the projects homepage'`.",
         ),
     }
 

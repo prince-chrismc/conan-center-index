@@ -10,12 +10,7 @@
 
 #### **<a name="KB-H003">#KB-H003</a>: "RECIPE METADATA"**
 
-The recipe has to declare the following attributes:
-
-- [url](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#url)
-- [license](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#license)
-- [description](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#description)
-- [homepage](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#homepage).
+> **Warning**: Deprecated - replaced by [pylint checks](../linter/check_recipe_attributes.py) and [these](../linter/check_recipe_url.py)
 
 Also we recommend adding [topics](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#topics) attribute.
 

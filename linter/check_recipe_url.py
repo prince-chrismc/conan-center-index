@@ -15,12 +15,12 @@ class RecipeUrl(BaseChecker):
         "E9012": (
             "Recipe URL should be ",
             "conan-bad-url-attribute",
-            "Use only CCI for URL: `url = 'https://github.com/conan-io/conan-center-index'`."
+            "Use only ConanCenterIndex for the attribute [`url`](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#url): `url = 'https://github.com/conan-io/conan-center-index'`."
         ),
         "E9013": (
             "Missing url attribute",
             "conan-missing-url-attribute",
-            "The member attribute `url` must be declared: `url = 'https://github.com/conan-io/conan-center-index'`."
+            "The member attribute [`url`](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#url) must be declared: `url = 'https://github.com/conan-io/conan-center-index'`."
         )
     }
 
