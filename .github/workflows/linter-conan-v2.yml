@@ -42,13 +42,16 @@ jobs:
         id: linter_recipes
         if: steps.changed_files.outputs.any_changed == 'true'
         run: |
+          echo '## Linter summary (recipes)' >> $GITHUB_STEP_SUMMARY
           i=1
           for file in recipes/*/*/conanfile.py; do
             if [[ $i -gt 100 ]] ; then
               break
             fi
-            pylint --rcfile=linter/pylintrc_recipe ${file} --output-format=json --output=recipes.json --score=y --fail-under=${{ env.SCORE_THRESHOLD }}
-            echo "$i"
+            echo "$i - $file"
+            pylint --rcfile=linter/pylintrc_recipe  --output-format=json --output=recipes.json --score=y --fail-under=${{ env.SCORE_THRESHOLD }}
+            jq 'map( select(.type=="error")) | group_by (.message)[] | {message: .[0].message, length: length}' recipes.json > recipes2.json
+            jq -r '" * \(.message): \(.length)"' recipes2.json >> $GITHUB_STEP_SUMMARY
             (( i += 1 ))
           done
 
@@ -64,15 +67,7 @@ jobs:
         with:
           name: linter-output
           path: |
-            recipes.json
             test_package.json
-
-      - name: Create report (recipes)
-        if: steps.changed_files.outputs.any_changed == 'true' && steps.linter_recipes.outcome != 'skipped' && always()
-        run: |
-          echo '## Linter summary (recipes)' >> $GITHUB_STEP_SUMMARY
-          jq 'map( select(.type=="error")) | group_by (.message)[] | {message: .[0].message, length: length}' recipes.json > recipes2.json
-          jq -r '" * \(.message): \(.length)"' recipes2.json >> $GITHUB_STEP_SUMMARY
 
       - name: Create report (test_package)
         if: steps.changed_files.outputs.any_changed == 'true' && steps.linter_test_package.outcome != 'skipped' && always()
