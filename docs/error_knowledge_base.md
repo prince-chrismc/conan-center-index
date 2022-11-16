@@ -6,7 +6,7 @@
 
 #### **<a name="KB-H002">#KB-H002</a>: "REFERENCE LOWERCASE"**
 
-The package names in conan-center have to be [lowercase](https://github.com/conan-io/tribe/blob/main/design/017-lowercase-references.md). e.g: ``zlib/1.2.8``.
+> **Warning**: Deprecated - Replaced by [pylint checks](linters.md#e9004---conan-package-name-conan-package-names-must-be-lower-case)
 
 #### **<a name="KB-H003">#KB-H003</a>: "RECIPE METADATA"**
 

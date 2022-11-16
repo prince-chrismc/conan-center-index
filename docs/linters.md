@@ -46,16 +46,15 @@ Check the [Developing Recipes](developing_recipes_locally.md) for more informati
 
 Here is the list of current warning and errors provided by pylint, when using CCI configuration.
 
-### E9006 - conan-import-conanfile: ConanFile should be imported from conan
+### E9004 - conan-package-name: Conan package names must be lower-case
+
+The package names in ConanCenter have to be [lowercase](https://github.com/conan-io/tribe/blob/main/design/017-lowercase-references.md). e.g: ``zlib/1.2.8``.
+
+The package name is always lower-case, even when the upstream uses another format
 
 ```python
-from conans import ConanFile
-```
-
-Should be replaced by:
-
-```python
-from conan import Conanfile
+def FoobarConanfile(ConanFile):
+    name = "foobar"
 ```
 
 ### E9005 - conan-missing-name: Every conan recipe must contain the attribute name
@@ -67,13 +66,16 @@ def BazConanfile(ConanFile):
     name = "baz"
 ```
 
-### E9004 - conan-package-name: Conan package names must be lower-case
-
-The package name is always lower-case, even when the upstream uses another format
+### E9006 - conan-import-conanfile: ConanFile should be imported from conan
 
 ```python
-def FoobarConanfile(ConanFile):
-    name = "foobar"
+from conans import ConanFile
+```
+
+Should be replaced by:
+
+```python
+from conan import Conanfile
 ```
 
 ### E9007 - conan-test-no-name: Do not add name attribute in test package recipes
