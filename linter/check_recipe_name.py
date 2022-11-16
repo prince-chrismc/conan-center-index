@@ -30,7 +30,7 @@ class RecipeName(BaseChecker):
         "W9001": (
             "Inconsistent package class name",
             "conan-inconsistent-class-name",
-            "The derived `ConanFile` class should contain the recipe name and have a 'Conan` suffix: `class FooConan(ConanFile):`."
+            "Generic class names can cause review confusion. To keep a better naming, the derived `ConanFile` class should contain the recipe name and have a 'Conan` suffix such as it should use `<Package>Conan`: `class FooConan(ConanFile):`."
         )
     }
 

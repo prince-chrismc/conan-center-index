@@ -348,7 +348,7 @@ Windows [naming conventions](https://docs.microsoft.com/en-us/windows/win32/file
 
 #### **<a name="KB-H059">#KB-H059</a>: "CLASS NAME"**
 
-Generic class names can cause review confusion. To keep a better naming, it should use `<Package>Conan`.
+> **Warning**: Deprecated by [pylint checks](../linter/check_recipe_name.py)
 
 #### **<a name="KB-H060">#KB-H060</a>: "NO CRLF"**
 
@@ -390,7 +390,7 @@ See also: [Submitting a Package](adding_packages/README.md#submitting-a-package)
 
 #### **<a name="KB-H066">#KB-H066</a>: "SHORT_PATHS USAGE"**
 
-The recipe missess [short_paths](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#short-paths) attribute.
+The recipe requires [short_paths](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#short-paths) attribute.
 It may happen due to the very long paths within source, build or package directories during the package creating.
 Consider adding the following code:
 
