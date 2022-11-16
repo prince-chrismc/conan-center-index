@@ -44,9 +44,9 @@ jobs:
         run: |
           i=1
           for file in recipes/*/*/conanfile.py; do
-            if [[ $i -lt 100 ]] ; do
+            if [[ $i -lt 100 ]] ; then
               break
-            done
+            fi
             pylint --rcfile=linter/pylintrc_recipe ${file} --output-format=json --output=recipes.json --score=y --fail-under=${{ env.SCORE_THRESHOLD }}
             echo "$i"
             (( i += 1 ))
