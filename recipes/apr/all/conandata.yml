@@ -2,6 +2,9 @@ sources:
   "1.7.0":
     url: "https://downloads.apache.org/apr/apr-1.7.0.tar.gz"
     sha256: "48e9dbf45ae3fdc7b491259ffb6ccf7d63049ffacbc1c0977cced095e4c2d5a2"
+  "1.7.0":
+    url: "https://downloads.apache.org/apr/apr-1.7.0.tar.gz"
+    sha256: "48e9dbf45ae3fdc7b491259ffb6ccf7d63049ffacbc1c0977cced095e4c2d5a2"
 patches:
   "1.7.0":
     - base_path: "source_subfolder"
