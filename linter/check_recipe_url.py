@@ -3,7 +3,7 @@ from pylint.interfaces import IAstroidChecker
 from astroid import nodes, Const, AssignName
 
 
-class PackageUrl(BaseChecker):
+class RecipeUrl(BaseChecker):
     """
        All packages must have a url attribute pointing back to ConanCenterIndex
     """

@@ -3,7 +3,7 @@ from pylint.interfaces import IAstroidChecker
 from astroid import nodes, Const, AssignName
 
 
-class PackageName(BaseChecker):
+class RecipeName(BaseChecker):
     """
        All packages must have a lower-case name
     """
