@@ -42,7 +42,15 @@ jobs:
         id: linter_recipes
         if: steps.changed_files.outputs.any_changed == 'true'
         run: |
-          pylint --rcfile=linter/pylintrc_recipe recipes/*/*/conanfile.py --output-format=json --output=recipes.json --score=y --fail-under=${{ env.SCORE_THRESHOLD }}
+          i=1
+          for file in recipes/*/*/conanfile.py; do
+            if [[ $i -lt 100 ]] ; do
+              break
+            done
+            pylint --rcfile=linter/pylintrc_recipe ${file} --output-format=json --output=recipes.json --score=y --fail-under=${{ env.SCORE_THRESHOLD }}
+            echo "$i"
+            (( i += 1 ))
+          done
 
       - name: Execute linter over all test_package/recipes in the repository
         id: linter_test_package
