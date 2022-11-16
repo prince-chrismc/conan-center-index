@@ -4,6 +4,7 @@ import re
 from conans import AutoToolsBuildEnvironment, CMake, ConanFile, tools
 from conans.errors import ConanInvalidConfiguration
 
+
 required_conan_version = ">=1.35.0"
 
 class AwsCdiSdkConan(ConanFile):
