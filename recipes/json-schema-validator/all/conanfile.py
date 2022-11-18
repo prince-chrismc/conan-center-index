@@ -1,6 +1,6 @@
 from conan import ConanFile
 from conan.errors import ConanInvalidConfiguration
-from conan.tools import build, files, microsoft, scm
+from conan.tools import build, files, microsoft, scm 
 from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain, cmake_layout
 import os
 import textwrap
@@ -46,9 +46,8 @@ class JsonSchemaValidatorConan(ConanFile):
     def validate(self):
         version = scm.Version(self.version)
         min_vs_version = "16" if version < "2.1.0" else "14"
-        min_cppstd = "17" if microsoft.is_msvc(self) and version < "2.1.0" else "11"
+        min_cppstd = "17"
         if self.info.settings.get_safe("compiler.cppstd"):
-            build.check_min_cppstd(self, min_cppstd)
             min_vs_version = "15" if version < "2.1.0" else "14"
 
         compilers = {
@@ -121,9 +120,3 @@ class JsonSchemaValidatorConan(ConanFile):
         self.cpp_info.set_property("cmake_file_name", "nlohmann_json_schema_validator")
         self.cpp_info.set_property("cmake_target_name", "nlohmann_json_schema_validator")
         self.cpp_info.libs = ["json-schema-validator" if scm.Version(self.version) < "2.1.0" else "nlohmann_json_schema_validator"]
-
-        # TODO: to remove in conan v2 once cmake_find_package* generators removed
-        self.cpp_info.names["cmake_find_package"] = "nlohmann_json_schema_validator"
-        self.cpp_info.names["cmake_find_package_multi"] = "nlohmann_json_schema_validator"
-        self.cpp_info.build_modules["cmake_find_package"] = [self._module_file_rel_path]
-        self.cpp_info.build_modules["cmake_find_package_multi"] = [self._module_file_rel_path]

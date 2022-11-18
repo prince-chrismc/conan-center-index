@@ -28,7 +28,7 @@ class NlohmannJsonConan(ConanFile):
         self.info.clear()
 
     def validate(self):
-        if self.settings.compiler.cppstd:
+        if self.info.settings.get_safe("compiler.cppstd"):
             check_min_cppstd(self, self._minimum_cpp_standard)
 
     def source(self):
