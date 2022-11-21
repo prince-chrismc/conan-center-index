@@ -12,6 +12,9 @@ The package names in conan-center have to be [lowercase](https://github.com/cona
 
 The recipe has to declare the following attributes:
 
+
+
+
 - [url](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#url)
 - [license](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#license)
 - [description](https://docs.conan.io/en/latest/reference/conanfile/attributes.html#description)
