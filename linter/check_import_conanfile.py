@@ -4,6 +4,7 @@ from pylint.interfaces import IAstroidChecker
 from astroid import nodes, Const, AssignName
 
 
+
 class ImportConanFile(BaseChecker):
     """
        Import ConanFile from new 'conan' module

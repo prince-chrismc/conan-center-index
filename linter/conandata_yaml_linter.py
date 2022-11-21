@@ -13,6 +13,7 @@ from strictyaml import (
 from yaml_linting import file_path
 
 
+
 def main():
     parser = argparse.ArgumentParser(
         description="Validate Conan's 'conandata.yaml' file to ConanCenterIndex's requirements."
