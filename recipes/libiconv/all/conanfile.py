@@ -1,4 +1,5 @@
 from conan import ConanFile
+from conan.tools.build import cross_building
 from conan.tools.env import Environment, VirtualBuildEnv
 from conan.tools.files import (
     apply_conandata_patches,
@@ -14,6 +15,7 @@ from conan.tools.gnu import Autotools, AutotoolsToolchain
 from conan.tools.layout import basic_layout
 from conan.tools.microsoft import is_msvc, unix_path
 from conan.tools.scm import Version
+from conans.tools import get_gnu_triplet
 import os
 
 required_conan_version = ">=1.53.0"
@@ -22,7 +24,7 @@ required_conan_version = ">=1.53.0"
 class LibiconvConan(ConanFile):
     name = "libiconv"
     description = "Convert text to and from Unicode"
-    license = "LGPL-2.1"
+    license = ("LGPL-2.0-or-later", "LGPL-2.1-or-later")
     url = "https://github.com/conan-io/conan-center-index"
     homepage = "https://www.gnu.org/software/libiconv/"
     topics = ("iconv", "text", "encoding", "locale", "unicode", "conversion")
@@ -61,6 +63,10 @@ class LibiconvConan(ConanFile):
             self.options.rm_safe("fPIC")
         self.settings.rm_safe("compiler.libcxx")
         self.settings.rm_safe("compiler.cppstd")
+        if Version(self.version) >= "1.17":
+            self.license = "LGPL-2.1-or-later"
+        else:
+            self.license = "LGPL-2.0-or-later"
 
     def layout(self):
         basic_layout(self, src_folder="src")
@@ -75,19 +81,21 @@ class LibiconvConan(ConanFile):
         get(self, **self.conan_data["sources"][self.version], destination=self.source_folder, strip_root=True)
 
     def generate(self):
-        def requires_fs_flag():
-            # See https://github.com/conan-io/conan/issues/11158
-            return (self.settings.compiler == "Visual Studio" and Version(self.settings.compiler.version) >= "12") or \
-                    (self.settings.compiler == "msvc" and Version(self.settings.compiler.version) >= "180")
-
         env = VirtualBuildEnv(self)
         env.generate()
 
         tc = AutotoolsToolchain(self)
-        if requires_fs_flag():
-            # order of setting flags and environment vars is important
-            # See https://github.com/conan-io/conan/issues/12228
+        if (self.settings.compiler == "Visual Studio" and Version(self.settings.compiler.version) >= "12") or \
+           (self.settings.compiler == "msvc" and Version(self.settings.compiler.version) >= "180"):
             tc.extra_cflags.append("-FS")
+        if cross_building(self) and is_msvc(self):
+            # ICU doesn't like GNU triplet of conan for msvc (see https://github.com/conan-io/conan/issues/12546)
+            host = get_gnu_triplet(str(self.settings.os), str(self.settings.arch), "gcc")
+            build = get_gnu_triplet(str(self._settings_build.os), str(self._settings_build.arch), "gcc")
+            tc.configure_args.extend([
+                f"--host={host}",
+                f"--build={build}",
+            ])
         tc.generate()
 
         if is_msvc(self) or self._is_clang_cl:
