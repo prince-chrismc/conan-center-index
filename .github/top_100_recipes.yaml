@@ -109,15 +109,14 @@ recipes:
   - civetweb
   - sdl
   - xtl
+  - xsimd # Needed by xtensor
   - xtensor
   - minizip
   - icu
   - libalsa
+  - picojson # Needed by jwt-cpp
   - jwt-cpp
 # the following are needed by some of the above:
   - xkeyboard-config
   - imath
   - libelf
-  - xsimd
-  - libbacktrace
-  - picojson
