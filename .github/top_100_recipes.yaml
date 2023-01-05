@@ -7,7 +7,6 @@ recipes:
   - libbacktrace # Needed by boost
   - boost
   - nlohmann_json
-  - bzip2
   - fmt
   - gtest
   - eigen
@@ -16,10 +15,8 @@ recipes:
   - rapidjson
   - zstd
   - sqlite3
-  - libbacktrace
   - spdlog
   - pkgconf
-  - b2
   - libjpeg
   - xz_utils
   - expat
@@ -60,7 +57,6 @@ recipes:
   - gnu-config
   - libtiff
   - re2
-  - meson
   - poco
   - xkbcommon
   - ogg
