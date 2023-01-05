@@ -1,8 +1,7 @@
 ---
 recipes:
   - zlib
-  - openssl:
-     - folders: ["3.x.x"]
+  - openssl
   - b2 # Needed by boost
   - bzip2 # Needed by boost
   - libbacktrace # Needed by boost
@@ -12,8 +11,7 @@ recipes:
   - fmt
   - gtest
   - eigen
-  - catch2:
-     - folders: ["3.x.x"]
+  - catch2
   - libiconv
   - rapidjson
   - zstd
@@ -76,12 +74,10 @@ recipes:
   - vorbis
   - flex
   - benchmark
-  - fontconfig:
-      - folders: ["meson"]
+  - fontconfig
   - openjpeg
   - imath # Needed for openexr
-  - openexr:
-      - folders: ["3.x"]
+  - openexr
   - aws-c-common
   - md4c
   - magic_enum
