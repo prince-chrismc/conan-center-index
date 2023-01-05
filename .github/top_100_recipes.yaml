@@ -69,6 +69,7 @@ recipes:
   - range-v3
   - vorbis
   - flex
+  - cmake # Needed by benchmark
   - benchmark
   - fontconfig
   - openjpeg
@@ -84,7 +85,7 @@ recipes:
   - cyrus-sasl
   - bison
   - zulu-openjdk
-  - cmake
+  - libelf # Needed by glib
   - glib
   - libunwind
   - libjpeg-turbo
