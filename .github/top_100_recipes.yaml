@@ -79,6 +79,7 @@ recipes:
   - fontconfig:
       - folders: ["meson"]
   - openjpeg
+  - imath # Needed for openexr
   - openexr:
       - folders: ["3.x"]
   - aws-c-common
@@ -86,6 +87,7 @@ recipes:
   - magic_enum
   - cppcodec
   - glfw
+  - nasm # Needed by openh264 and libjpeg-turbo
   - openh264
   - cyrus-sasl
   - bison
@@ -98,7 +100,6 @@ recipes:
   - nanoflann
   - glu
   - stb
-  - nasm
   - libmysqlclient
   - cxxopts
   - odbc
@@ -116,7 +117,3 @@ recipes:
   - libalsa
   - picojson # Needed by jwt-cpp
   - jwt-cpp
-# the following are needed by some of the above:
-  - xkeyboard-config
-  - imath
-  - libelf
