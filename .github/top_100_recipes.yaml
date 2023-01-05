@@ -2,9 +2,8 @@
 recipes:
   - zlib
   - openssl:
-     - folders: ["3.x.x", "1.x.x"]
-  - b2: # Needed by boost
-     - folders: ["portable"]
+     - folders: ["3.x.x"]
+  - b2 # Needed by boost
   - bzip2 # Needed by boost
   - libbacktrace # Needed by boost
   - boost
@@ -22,6 +21,7 @@ recipes:
   - libbacktrace
   - spdlog
   - pkgconf
+  - b2
   - libjpeg
   - xz_utils
   - expat
