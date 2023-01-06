@@ -58,6 +58,7 @@ recipes:
   - libtiff
   - re2
   - poco
+  - xkeyboard-config # Needed by
   - xkbcommon
   - ogg
   - jasper
