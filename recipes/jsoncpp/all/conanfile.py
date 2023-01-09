@@ -69,7 +69,7 @@ class JsoncppConan(ConanFile):
         tc.generate()
         
     @property
-    def _remove_explicity_operator_bool(self):
+    def _remove_explicity_operator_bool(self)
         known_problematic_compilers = {"Visual Studio": "11"}
         return known_problematic_compilers[self.settings.compiler] and known_problematic_compilers[self.settings.compiler] == self.settings.compiler.version
 
