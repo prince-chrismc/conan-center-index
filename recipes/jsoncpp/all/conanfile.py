@@ -67,10 +67,15 @@ class JsoncppConan(ConanFile):
         else:
             tc.cache_variables["CCACHE_EXECUTABLE"] = ""
         tc.generate()
+        
+    @property
+    def _remove_explicity_operator_bool(self)
+        known_problematic_compilers = {"Visual Studio": "11"}
+        return known_problematic_compilers[self.settings.compiler] and known_problematic_compilers[self.settings.compiler] == self.settings.compiler.version
 
     def _patch_sources(self):
         apply_conandata_patches(self)
-        if self.settings.compiler == "Visual Studio" and self.settings.compiler.version == "11":
+        if self._remove_explicity_operator_bool:
             replace_in_file(self, os.path.join(self.source_folder, "include", "json", "value.h"),
                                   "explicit operator bool()",
                                   "operator bool()")
