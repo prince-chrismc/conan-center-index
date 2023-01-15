@@ -25,6 +25,7 @@ recipes:
   - libwebp
   - opengl
   - cli11
+  - libtool # Needed by libcurl and libuuid
   - libcurl
   - autoconf
   - protobuf
@@ -33,7 +34,6 @@ recipes:
   - jbig
   - libuuid
   - xorg
-  - libtool
   - ninja
   - ms-gsl
   - libpq
@@ -51,14 +51,14 @@ recipes:
   - pcre2
   - yaml-cpp
   - asio
-  - meson # Needed by wayland-protocols to build
+  - meson # Needed by wayland-protocols
   - wayland-protocols
   - opus
   - gnu-config
   - libtiff
   - re2
   - poco
-  - xkeyboard-config # Needed by
+  - xkeyboard-config # Needed by xkbcommon
   - xkbcommon
   - ogg
   - jasper
