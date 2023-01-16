@@ -30,3 +30,10 @@ jobs:
 
     - name: conan create
       run: conan cci:create-top-versions --list=.github/top_100_recipes.yaml -s complier.cppstd=14 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=yes -f md >> $GITHUB_STEP_SUMMARY
+
+    - name: conan upload
+      run: |
+        conan remote add cci-fork https://superfrogchrismc.jfrog.io/artifactory/api/conan/cci-fork
+        conan user -p ${{ secrets.CONAN_REMOTE_PW }} -r cci-fork christopherm@jfrog.com
+
+        conan upload "*" -c --all -r cci-fork
