@@ -87,6 +87,7 @@ recipes:
   - bison
   - zulu-openjdk
   - libelf # Needed by glib
+  - libmount # Needed by glib
   - glib
   - libunwind
   - libjpeg-turbo
