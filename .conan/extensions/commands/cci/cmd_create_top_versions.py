@@ -123,7 +123,8 @@ def create_top_versions(conan_api, parser, *args):
                 continue
 
             try:
-                conan_api.install.install_binaries(deps_graph=deps_graph, remotes=[], update=False)
+                # We know everything is ready to be installed since we already figured it out in `analyze_binaries`
+                conan_api.install.install_binaries(deps_graph=deps_graph, remotes=[])
                 created.update({reference: False})
             except Exception as e:
                 out.error(f"{reference} build failed with: {str(e)}")
