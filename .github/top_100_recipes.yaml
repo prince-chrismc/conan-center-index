@@ -88,6 +88,7 @@ recipes:
   - zulu-openjdk
   - libelf # Needed by glib
   - libmount # Needed by glib
+  - libselinux # Needed by glib
   - glib
   - libunwind
   - libjpeg-turbo
