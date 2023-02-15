@@ -16,20 +16,20 @@ recipes:
   - zstd
   - sqlite3
   - spdlog
+  - autoconf # Needed by pkgconf
+  - automake # Needed by pkgconf
+  - m4 # Needed by pkgconf
   - pkgconf
   - libjpeg
   - xz_utils
   - expat
-  - m4
   - libpng
   - libwebp
   - opengl
   - cli11
   - libtool # Needed by libcurl and libuuid
   - libcurl
-  - autoconf
   - protobuf
-  - automake
   - c-ares
   - jbig
   - libuuid
