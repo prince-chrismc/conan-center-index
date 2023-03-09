@@ -92,18 +92,17 @@ def export_all_versions(conan_api, parser, *args):
                 try:
                     ref = conan_api.export.export(os.path.abspath(conanfile), recipe_name, version, None, None)
                     out.verbose(f"Exported {ref}")
-                    # exported.append(ref)
                     if recipe_name not in exported:
                         exported[recipe_name] = []
                     exported[recipe_name].append(ref)
                 except Exception as e:
                     failed.update({f"{recipe_name}/{recipe_subfolder}": str(e)})
 
-    out.title("EXPORTED RECIPES")
+    out.title("Exported Recipes")
     for item in exported.keys():
         out.info(f"{item}: exported {len(exported[item])} versions")
 
-    out.title("FAILED TO EXPORT")
+    out.title("Failed to Export")
     for item in failed.items():
         out.info(f"{item[0]}")
 
