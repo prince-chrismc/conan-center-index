@@ -32,5 +32,5 @@ def parse_all_version_and_recipe_folder(recipe_name):
     known_versions = {}
     for version, folder in config["versions"].items():
         folder_name = folder['folder']
-        known_versions.update({folder_name: version})
+        known_versions.update({version: folder_name})
     return known_versions
