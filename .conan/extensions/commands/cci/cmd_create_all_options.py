@@ -17,7 +17,7 @@ from conan.cli.printers.graph import print_graph_packages
 from conan.errors import ConanException
 
 
-
+# This is me going down the wrong path
 from conans.client.cache.cache import ClientCache
 from conans.client.profile_loader import ProfileLoader
 from conans.model.profile import Profile
@@ -66,9 +66,12 @@ def create_all_options(conan_api, parser, *args):
         conanfile_path = os.path.join(recipe_folder, recipe_subfolder, "conanfile.py")
         if not os.path.isfile(conanfile_path):
             raise ConanException(f"The file {conanfile} does not exist")
+        # This just loads the Python Class in "memory"
         conanfile = conan_api.graph.load_conanfile_class(conanfile_path)
 
         options = None
+        # This is taken from the `conan inspect` command
+        # https://github.com/conan-io/conan/blob/5bb2b8ddd7b23f460c1b81ee82c78aaf56c208ad/conan/cli/commands/inspect.py#L35
         for name, value in python_inspect.getmembers(conanfile):
             if name.startswith('_') or python_inspect.ismethod(value) \
             or python_inspect.isfunction(value) or isinstance(value, property):
@@ -81,16 +84,35 @@ def create_all_options(conan_api, parser, *args):
         if not options:
             raise ConanException("Unable to find options object")
 
-        ref, conanfile = conan_api.export.export(os.path.abspath(conanfile_path), recipe_name, version, None, None)
+        # The processes the recipe up until the exports, so conan's init, setter, export source, etc
+        # ref, conanfile = conan_api.export.export(os.path.abspath(conanfile_path), recipe_name, version, None, None)
 
+        # To run configure for (what I want)
+        # But this is hidden, so we need to run for the full graph
+        # But the methods are not expected to be called so we should not do that since it's unintended
+        # - Possible but easily break (e.g setting are not set)
 
         for option_name, option_values in options.items():
             out.writeln(f"{option_name} can be set to {option_values}")
             for option in option_values:
 
-                new_opts = Options.loads(f"{option_name}={option}\n")
-                profile_host.options.update_options(new_opts)
-                print(profile_host)
+                # This is destructive! manipulated the host profiles
+                # new_opts = Options.loads(f"{option_name}={option}\n")
+                # profile_host.options.update_options(new_opts)
+
+                # Try to make a new profile to include the input one by name
+                # TODO: Make a new profile `include(default)` with option set
+
+                # Composing profiles ``get_profile`` from the CLI args
+                # https://github.com/conan-io/conan/blob/5bb2b8ddd7b23f460c1b81ee82c78aaf56c208ad/conan/api/subapi/profiles.py#L40
+                # Directly passing in the CLI args here
+                new_host_profile = conan_api.profiles.get_profile(profiles=["default"], options=[f"{option_name}={option}",])
+
+                # > The API is designed ot be close to the CLI
+
+                out.title("Output profiles")
+                out.info("Profile host:")
+                print(new_host_profile)
 
                 return
 
