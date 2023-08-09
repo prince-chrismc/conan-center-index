@@ -42,6 +42,7 @@ jobs:
 
     - name: conan upload
       run: |
+        conan remote enable cci-fork
         conan remote login cci-fork christopherm@jfrog.com -p ${{ secrets.CONAN_REMOTE_PW }}
 
         CFI_TOKEN=${{ secrets.CONAN_REMOTE_PW }} conan upload "*" -c -r cci-fork
