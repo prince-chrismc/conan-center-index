@@ -11,5 +11,5 @@ runs:
     - uses: actions/setup-python@v4
       with:
         python-version: ${{ env.PYVER }}
-    - run: python3 -m pip install conan==${{ steps.parse_conan_v1_version.outputs.result }}
+    - run: python3 -m pip install conan==${{ steps.parse_conan_v2_version.outputs.result }}
       shell: bash
