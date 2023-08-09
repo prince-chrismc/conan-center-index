@@ -5,9 +5,16 @@ runs:
   using: "composite"
   steps:
     - id: parse_conan_v2_version
+      if: runner.os != "windows-latest"
       uses: mikefarah/yq@master
       with:
         cmd: yq '.conan.version' '.c3i/config_v2.yml'
+    - if: runner.os == "windows-latest"
+      run: choco install yq
+      shell: bash
+    - id: parse_conan_v2_version
+      if: runner.os == "windows-latest"
+      run: yq '.conan.version' '.c3i/config_v2.yml'
     - uses: actions/setup-python@v4
       with:
         python-version: ${{ env.PYVER }}
