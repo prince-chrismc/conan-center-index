@@ -12,3 +12,4 @@ runs:
       with:
         python-version: ${{ env.PYVER }}
     - run: python3 -m pip install conan==${{ steps.parse_conan_v1_version.outputs.result }}
+      shell: bash
