@@ -4,8 +4,19 @@ on:
   push:
 
 jobs:
-  ubuntu:
+  title:
     runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo '## ConanCenterIndex 2.0 Migration Effort' >> $GITHUB_STEP_SUMMARY
+        echo 'This workflow will export and build all the package the represent (or are required for) the top 80% or downloaded packages' >> $GITHUB_STEP_SUMMARY
+
+  create:
+    needs: [title]
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
     - name: setup python
@@ -15,12 +26,11 @@ jobs:
     - name: install cmake
       uses: lukka/get-cmake@latest # Should be set to CMake 3.15 which is the min for 2.0
 
-    - run: python3 -m pip install conan==2.0.9
     #- run: python3 -m pip install "conan @ git+https://github.com/conan-io/conan.git@develop2"
+    - uses: ./.github/actions/install/conan-v2
     - name: conan config
       run: |
-        echo '## ConanCenterIndex 2.0 Migration Effort' >> $GITHUB_STEP_SUMMARY
-        echo 'This workflow will export and build all the package the represent (or are required for) the top 80% or downloaded packages' >> $GITHUB_STEP_SUMMARY
+        echo '### ${{ matrix.os }}' >> $GITHUB_STEP_SUMMARY
         conan config home
         conan config install .conan
         conan profile detect --name default

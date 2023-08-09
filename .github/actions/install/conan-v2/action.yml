@@ -1,0 +1,14 @@
+name: Install Conan v2
+description: Install the c3i config version of Conan for the v2 pipelines'
+    
+runs:
+  using: "composite"
+  steps:
+    - id: parse_conan_v2_version
+      uses: mikefarah/yq@master
+      with:
+        cmd: yq '.conan.version' '.c3i/config_v2.yml'
+    - uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYVER }}
+    - run: python3 -m pip install conan==${{ steps.parse_conan_v1_version.outputs.result }}
