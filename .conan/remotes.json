@@ -1,0 +1,22 @@
+{
+ "remotes": [
+  {
+   "name": "cci-fork",
+   "url": "https://superfrogchrismc.jfrog.io/artifactory/api/conan/cci-fork",
+   "verify_ssl": true,
+   "disabled": true
+  },
+  {
+   "name": "generic-conan",
+   "url": "https://superfrogchrismc.jfrog.io/artifactory/api/conan/generic-conan",
+   "verify_ssl": true,
+   "disabled": true
+  },
+  {
+   "name": "conancenter",
+   "url": "https://center.conan.io",
+   "verify_ssl": true,
+   "disabled": true
+  }
+ ]
+}
