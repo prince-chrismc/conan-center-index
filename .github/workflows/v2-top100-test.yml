@@ -35,7 +35,48 @@ jobs:
     - name: conan create
       env:
         CFI_TOKEN: ${{ secrets.CONAN_REMOTE_PW }}
-      run: conan cci:create-top-versions --list=.github/top_100_recipes.yaml -s complier.cppstd=14 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=yes -f md >> $GITHUB_STEP_SUMMARY
+      run: conan cci:create-top-versions --list=.github/top_100_recipes.yaml -pr default -pr install_sytem_tools -f md >> $GITHUB_STEP_SUMMARY
+      shell: bash
+
+    - name: conan remote
+      run: |
+        conan remote enable cci-fork
+        conan remote login cci-fork christopherm@jfrog.com -p ${{ secrets.CONAN_REMOTE_PW }}
+
+    - name: conan upload
+      env:
+        CFI_TOKEN: ${{ secrets.CONAN_REMOTE_PW }}
+      run: conan upload "*" -c -r cci-fork
+
+  andoird:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: 3.9 # Should be 3.6 for 2.0 min (my code uses 3.9 features)
+    - name: install cmake
+      uses: lukka/get-cmake@latest # Should be set to CMake 3.15 which is the min for 2.0
+
+    #- run: python3 -m pip install "conan @ git+https://github.com/conan-io/conan.git@develop2"
+    - run: python3 -m pip install conan==2.0.9
+    - name: conan config
+      run: |
+        echo '## ConanCenterIndex Android Support Effort' >> $GITHUB_STEP_SUMMARY
+        echo 'This workflow will export and build all the package which are not to support andoid' >> $GITHUB_STEP_SUMMARY
+        conan config home
+        conan config install .conan
+        conan profile detect --name default
+      shell: bash
+
+    - name: conan export
+      run: conan cci:export-all-versions --list=.github/top_100_recipes.yaml -f md >> $GITHUB_STEP_SUMMARY
+      shell: bash
+
+    - name: conan create
+      env:
+        CFI_TOKEN: ${{ secrets.CONAN_REMOTE_PW }}
+      run: conan cci:create-top-versions --list=.github/android_support.yaml -pr android -f md >> $GITHUB_STEP_SUMMARY
       shell: bash
 
     - name: conan remote

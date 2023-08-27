@@ -1,3 +1,5 @@
 ---
 recipes:
 - android-ndk # r25c
+- zlib
+- openssl
