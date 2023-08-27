@@ -26,6 +26,7 @@ jobs:
         conan config home
         conan config install .conan
         conan profile detect --name default
+      shell: bash
 
     - name: conan export
       run: conan cci:export-all-versions --list=.github/top_100_recipes.yaml -f md >> $GITHUB_STEP_SUMMARY
