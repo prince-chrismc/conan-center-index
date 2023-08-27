@@ -29,11 +29,13 @@ jobs:
 
     - name: conan export
       run: conan cci:export-all-versions --list=.github/top_100_recipes.yaml -f md >> $GITHUB_STEP_SUMMARY
+      shell: bash
 
     - name: conan create
       env:
         CFI_TOKEN: ${{ secrets.CONAN_REMOTE_PW }}
       run: conan cci:create-top-versions --list=.github/top_100_recipes.yaml -s complier.cppstd=14 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=yes -f md >> $GITHUB_STEP_SUMMARY
+      shell: bash
 
     - name: conan remote
       run: |
