@@ -70,7 +70,7 @@ jobs:
       shell: bash
 
     - name: conan export
-      run: conan cci:export-all-versions --list=.github/android_support.yaml -f md >> $GITHUB_STEP_SUMMARY
+      run: conan cci:export-all-versions --list=.github/android_support.yml -f md >> $GITHUB_STEP_SUMMARY
       shell: bash
 
     - name: conan create
