@@ -76,7 +76,9 @@ jobs:
     - name: conan create
       env:
         CFI_TOKEN: ${{ secrets.CONAN_REMOTE_PW }}
-      run: conan cci:create-top-versions --list=.github/android_support.yml -pr android -pr install_system_tools -f md >> $GITHUB_STEP_SUMMARY
+      run: |
+        conan cci:create-top-versions -n android-ndk -f md >> $GITHUB_STEP_SUMMARY
+        conan cci:create-top-versions --list=.github/android_support.yml -pr android -pr install_system_tools -f md >> $GITHUB_STEP_SUMMARY
       shell: bash
 
     - name: conan remote
